@@ -85,9 +85,9 @@
         {
             "header": {
                 "title": "kode yang bicara bahasa bisnis.",
-                "lead": "Pendekatan aku dalam membangun backend: dimulai dari memahami aturan bisnis, lalu menuangkannya ke model domain yang jelas, bukan dari tabel database."
+                "lead": "Pendekatan ku dalam membangun backend: dimulai dari memahami aturan bisnis, lalu menuangkannya ke model domain yang jelas, bukan dari tabel database."
             },
-            "description": "Menurut aku, perangkat lunak harus mencerminkan bisnis yang dilayaninya. Dengan menerapkan Domain-Driven Design, aku membangun sistem yang berpusat pada aturan bisnis, batasan yang jelas, serta model yang tetap mudah dipelihara seiring dengan meningkatnya kompleksitas.",
+            "description": "Menurut ku, perangkat lunak harus mencerminkan bisnis yang dilayaninya. Dengan menerapkan Domain-Driven Design, aku membangun sistem yang berpusat pada aturan bisnis, batasan yang jelas, serta model yang tetap mudah dipelihara seiring dengan meningkatnya kompleksitas.",
             "highlight": "Domain-Driven Design",
             "details": [
                 "Domain modeling & business invariants",
