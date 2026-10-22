@@ -46,6 +46,11 @@ export class Animation {
     handleWheel(event) {
         event.preventDefault();
 
+        if (!this.isRunning) {
+            this.current = window.scrollY;
+            this.target = window.scrollY;
+        }
+
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
         this.target = Math.max(0, Math.min(maxScroll, this.target + event.deltaY));
 

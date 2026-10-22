@@ -279,7 +279,7 @@ helper.loadData("./misc/data.json")
         // techstacks
         const marqueeTrack = document.querySelector("#tech-marquee-track");
 
-        for (let copy = 0; copy < 2; copy++) {
+        const createGroup = () => {
             const group = document.createElement("div");
             group.className = "tech-marquee__group";
 
@@ -290,7 +290,18 @@ helper.loadData("./misc/data.json")
                 group.appendChild(item);
             });
 
-            marqueeTrack.appendChild(group);
+            return group;
+        };
+
+        const firstGroup = createGroup();
+        marqueeTrack.appendChild(firstGroup);
+        const groupWidth = firstGroup.getBoundingClientRect().width;
+
+        const copiesPerHalf = Math.max(1, Math.ceil(window.innerWidth / groupWidth));
+        const totalCopies = copiesPerHalf * 2;
+
+        for (let copy = 1; copy < totalCopies; copy++) {
+            marqueeTrack.appendChild(createGroup());
         }
 
         // design approach
@@ -361,14 +372,160 @@ helper.loadData("./misc/data.json")
         });
 
         // showcase
+        const showcaseGrid = document.querySelector("#showcase-grid");
+        const SHOWCASE_THEMES = ["dark", "light"];
+        const MAX_PATTERNS = 4;
+
+        data.showcase.forEach((project, i) => {
+            const card = document.createElement("article");
+            card.className = "showcase-card";
+            card.dataset.theme = SHOWCASE_THEMES[i % SHOWCASE_THEMES.length];
+
+            const visual = document.createElement("div");
+            visual.className = "showcase-card__visual";
+
+            const imageName = Array.isArray(project.images) ? project.images[0] : project.images;
+
+            if (imageName) {
+                const img = helper.loadImage(imageName, ASSET_TYPE.PNG);
+                img.alt = project.name;
+                img.loading = "lazy";
+                visual.appendChild(img);
+            } else {
+                const initial = document.createElement("span");
+                initial.className = "showcase-card__initial";
+                initial.textContent = project.name.charAt(0);
+                initial.setAttribute("aria-hidden", "true");
+                visual.appendChild(initial);
+            }
+
+            const meta = document.createElement("div");
+            meta.className = "showcase-card__meta";
+
+            const type = document.createElement("span");
+            type.textContent = project.type;
+
+            const status = document.createElement("span");
+            status.className = "showcase-card__status";
+            status.dataset.status = project["project-status"] === "Completed" ? "done" : "progress";
+            status.textContent = project["project-status"];
+
+            meta.append(type, status);
+
+            const title = document.createElement("h4");
+            title.className = "showcase-card__title";
+            title.textContent = project.name;
+
+            const description = document.createElement("p");
+            description.className = "showcase-card__description";
+            description.textContent = project.description || "Deskripsi proyek akan segera ditambahkan.";
+
+            const patterns = project["architecture-or-pattern-or-principle"];
+            const list = document.createElement("ul");
+            list.className = "showcase-card__list";
+
+            patterns.slice(0, MAX_PATTERNS).forEach((name) => {
+                const li = document.createElement("li");
+                li.textContent = name;
+                list.appendChild(li);
+            });
+
+            const action = document.createElement("div");
+            action.className = "showcase-card__action";
+
+            const link = document.createElement("a");
+            link.href = project["project-url"];
+            link.target = "_blank";
+            link.rel = "noopener";
+            link.setAttribute("aria-label", `Buka proyek ${project.name}`);
+            link.textContent = "↗";
+
+            action.appendChild(link);
+
+            card.append(visual, meta, title, description, list, action);
+            showcaseGrid.appendChild(card);
+        });
 
         // about me
         const aboutDescription = document.querySelector("#about-description");
         const aboutImage = document.querySelector("#about-image");
 
         const setAboutImage = helper.loadImage(IMAGE.MY_PHOTO, ASSET_TYPE.PNG);
+        setAboutImage.alt = data.about.name;
 
         aboutDescription.textContent = data.about.description;
         aboutImage.appendChild(setAboutImage);
-    });
+
+        const EDUCATION = [
+            { logo: IMAGE.SMP_LOGO,  name: "SMPI Raudhatul Jannah", year: "2019 – 2021" },
+            { logo: IMAGE.SMA_LOGO,  name: "SMA Negeri 2 Harau", year: "2021 – 2024" },
+            { logo: IMAGE.UNIV_LOGO, name: "Universitas Andalas", year: "2025 – 2029" }
+        ];
+
+        const educationList = document.querySelector("#education-list");
+
+        EDUCATION.forEach((item) => {
+            const li = document.createElement("li");
+            li.className = "education__item";
+
+            const logoBox = document.createElement("span");
+            logoBox.className = "education__logo";
+
+            const logo = helper.loadImage(item.logo, ASSET_TYPE.PNG);
+            logo.alt = item.name;
+            logo.loading = "lazy";
+            logoBox.appendChild(logo);
+
+            const body = document.createElement("div");
+
+            const name = document.createElement("h4");
+            name.className = "education__name";
+            name.textContent = item.name;
+
+            const year = document.createElement("p");
+            year.className = "education__year";
+            year.textContent = item.year;
+
+            body.append(name, year);
+            li.append(logoBox, body);
+            educationList.appendChild(li);
+
+            educationList.appendChild(li);
+        });   
+
+        // contact
+        const findContact = (key) =>
+            data.about.contact.find((item) => item[key])?.[key];
+
+        const email = findContact("email");
+        const linkedIn = findContact("linkedIn");
+        const github = findContact("github");
+
+        const CONTACTS = [
+            { label: "Email", href: `mailto:${email}`, external: false },
+            { label: "LinkedIn", href: linkedIn, external: true },
+            { label: "GitHub", href: github, external: true }
+        ];
+
+        const contactList = document.querySelector("#contact-list");
+
+        CONTACTS.forEach((item) => {
+            const li = document.createElement("li");
+
+            const a = document.createElement("a");
+            a.className = "contact__link";
+            a.href = item.href;
+            a.textContent = item.label;
+
+            if (item.external) {
+                a.target = "_blank";
+                a.rel = "noopener";
+            }
+
+            li.appendChild(a);
+            contactList.appendChild(li);
+        });
+
+        githubMenuLink.href = github;
+    });   
     

@@ -3,7 +3,7 @@
         "name": "Althaf Mulya",
         "role": ["Web Developer"],
         "short-description": "Membangun sesuatu yang bermanfaat. Bersama .NET apa saja bisa dibuat.",
-        "description": "Saya menggunakan C# serta framework dari ekosistem .NET utamanya ASP.NET Web Api serta ASP.NET Razor Pages untuk pengembangan web application seperti CMS atau aplikasi internal yang memerlukan keamanan dan dukungan yang baik.",
+        "description": "Halo aku Althaf, junior software engineer dari Padang, Indonesia, yang berfokus pada web development menggunakan C# dan .NET. Aku tertarik pada software architecture dan membangun sistem yang andal serta mudah dikembangkan.",
         "domicile": "Padang, IDN",
         "yoe": "2 YEARS",
         "image": "",
@@ -33,27 +33,11 @@
     "techstacks": ["ASP.NET Core", "Entity Framework Core", "PostgreSQL", "Docker", "jQuery", "Bootstrap", "SCSS"],
     "showcase": [
         {
-            "name": "Saranin",
-            "description": "Kotak Saran Digital Anonim untuk Organisasi",
-            "project-url": "https://github.com/Althaf671/Saranin-Showcase",
-            "project-status": "On Progress",
-            "images": ["", "", ""],
-            "type": "SaaS",
-            "techstacks": [
-                {
-                    "name": "",
-                    "description": "",
-                    "icon": ""
-                }
-            ],
-            "architecture-or-pattern-or-principle": ["SOLID", "Domain-Driven Design", "Outbox Pattern", "Modular Monolith", "Clean Architecture", "Command-Query Separation", "Railway Oriented Programming", "Result Pattern"]
-        },
-        {
             "name": "Shinee Personal Tools",
             "description": "Kumpulan alat online gratis untuk mengolah gambar, PDF, dan berbagai kebutuhan file langsung dari browser.",
             "project-url": "http://shinee-tools.runasp.net/",
             "project-status": "Completed",
-            "images": ["", "", ""],
+            "images": "",
             "type": "Utility Tools",
             "techstacks": [
                 {
@@ -65,11 +49,27 @@
             "architecture-or-pattern-or-principle": ["MVC"]
         },
         {
+            "name": "Saranin",
+            "description": "Kotak Saran Digital Anonim untuk Organisasi",
+            "project-url": "https://github.com/Althaf671/Saranin-Showcase",
+            "project-status": "On Progress",
+            "images": "",
+            "type": "SaaS",
+            "techstacks": [
+                {
+                    "name": "",
+                    "description": "",
+                    "icon": ""
+                }
+            ],
+            "architecture-or-pattern-or-principle": ["SOLID", "Domain-Driven Design", "Outbox Pattern", "Modular Monolith", "Clean Architecture", "Command-Query Separation", "Railway Oriented Programming", "Result Pattern"]
+        },
+        {
             "name": "Noir Core",
             "description": "",
             "project-url": "https://github.com/Althaf671/Noir-Core",
             "project-status": "Completed",
-            "images": ["", "", ""],
+            "images": "",
             "type": "Boilerplate",
             "techstacks": [
                 {
@@ -95,15 +95,15 @@
                 "Domain events & bounded contexts"
             ],
             "images": [ 
-                { "name": "ddd", "alt": "Contoh implementasi aggregate dengan Result pattern" },
-                { "name": "ddd-2", "alt": "Contoh implementasi domain" },
-                { "name": "ddd-3", "alt": "Contoh implementasi domain" }
+                { "name": "ddd-2", "alt": "ddd example" },
+                { "name": "ddd", "alt": "ddd example" },
+                { "name": "error-domain", "alt": "ddd example" }
              ],
             "footer": { "label": "Domain-Driven Design", "hint": "Klik kode untuk berganti" }
         },
         {
             "header": {
-                "title": "Aplikasi yang andal.",
+                "title": "aplikasi yang andal.",
                 "lead": "Saya merancang backend dengan mempertimbangkan konsistensi data, penanganan kegagalan, dan pemrosesan operasi yang terkontrol."
             },
             "description": "Keandalan aplikasi tidak cukup hanya dengan memastikan kode berjalan sesuai harapan. Saya menerapkan pola desain Outbox dan Result yang membantu menjaga konsistensi transaksi, memastikan event tercatat bersama perubahan data, serta menangani kegagalan secara eksplisit agar alur operasi lebih terprediksi.",
@@ -121,7 +121,7 @@
         },
         {
             "header": {
-                "title": "Dirancang dengan dokumentasi.",
+                "title": "dirancang dengan dokumentasi.",
                 "lead": "Saya mendokumentasikan kebutuhan, rancangan, dan keputusan arsitektur, serta menerapkan pola yang mendukung konsistensi data dan penanganan kegagalan."
             },
             "description": "Pengembangan perangkat lunak yang terstruktur membutuhkan Dokumentasi yang jelas. Saya menggunakan Software Requirements Specification (SRS) untuk mendefinisikan kebutuhan sistem, Software Design Document (SDD) untuk menjelaskan rancangan teknis, dan Architecture Decision Records (ADR) untuk mencatat alasan di balik keputusan arsitektur. ",

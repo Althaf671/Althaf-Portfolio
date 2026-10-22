@@ -125,11 +125,39 @@
             <div class="skills-grid"></div>
         </section>
 
-        <!-- primary approach -->
-        <section id="design-principle" class="approach-card" id="approach" aria-labelledby="approach-title">
+        <!-- techstack -->
+        <section>
+            <div class="tech-marquee" aria-hidden="true">
+                <div class="tech-marquee__track" id="tech-marquee-track"></div>
+            </div>
+        </section>
+
+        <!-- about me -->
+        <section class="about section-container" id="about">
             <div class="section-label">
                 <p class="section-label__text">
-                    <span class="section-label__index">[01]</span> How I Engineer
+                    <span class="section-label__index">[01]</span> About Me
+                </p>
+                <span class="section-label__line" aria-hidden="true"></span>
+            </div>
+
+            <div class="about__body">
+                <div class="about__content">
+                    <h3 class="about__title">About Me</h3>
+                    <p id="about-description" class="about__description"></p>
+                </div>
+
+                <div id="about-image" class="about__image"></div>
+            </div>
+
+            <ul id="education-list" class="education"></ul>
+        </section>
+
+        <!-- primary approach -->
+        <section id="design-principle" class="approach-card section-container" id="approach" aria-labelledby="approach-title">
+            <div class="section-label">
+                <p class="section-label__text">
+                    <span class="section-label__index">[02]</span> How I Engineer
                 </p>
                 <span class="section-label__line" aria-hidden="true"></span>
             </div>
@@ -159,29 +187,34 @@
             </div>
         </section>
 
-        <!-- techstack -->
-        <section>
-            <div class="tech-marquee" aria-hidden="true">
-                <div class="tech-marquee__track" id="tech-marquee-track"></div>
-            </div>
-        </section>
-
         <!-- showcase -->
-        <section></section>
+        <section class="showcase section-container" id="showcase">
+            <div class="section-label">
+                <p class="section-label__text">
+                    <span class="section-label__index">[04]</span> Showcase
+                </p>
+                <span class="section-label__line" aria-hidden="true"></span>
+            </div>
 
-        <!-- about me -->
-        <section>
-            <div class="content-about">
-                <h3>About Me</h3>
-                <p id="about-description"></p>
+            <div class="showcase__header">
+                <h3 class="showcase__title">inilah my proyek.</h3>
+                <p class="showcase__lead">
+                    Setiap proyek dirancang dengan pola dan prinsip yang jelas,
+                    supaya mudah dikembangkan dan dirawat.
+                </p>
             </div>
-            <div class="image-about">
-                <span id="about-image"></span>
-            </div>
+
+            <div id="showcase-grid" class="showcase__grid"></div>
         </section>
 
         <!-- contact -->
-        <section></section>
+        <section class="contact section-container" id="contact">
+            <h3 class="contact__title">Mencari web developer berikutnya?</h3>
+            <p class="contact__subtitle">
+                Aku senang mendengar apa yang sedang kamu bangun dan bagaimana aku bisa berkontribusi.
+            </p>
+            <ul id="contact-list" class="contact__list"></ul>
+        </section>
 
     </main>
 

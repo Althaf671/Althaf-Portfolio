@@ -13,15 +13,8 @@ body {
     width: 100%;
     min-height: 100vh;
     height: fit-content;
-    overflow-x: clip;
+    overflow-x: hidden;
     background-color: #ffffff;
-}
-
-body::before {
-    content: "";
-    display: block;
-    height: var(--top-bar);
-    background: #000;
 }
 
 li {
@@ -34,6 +27,14 @@ a {
 
 .text-muted {
     color: #00000099;
+}
+
+.section-container {
+    --card-padding: clamp(1.5rem, 4vw, 4rem);
+    font-family: "Poppins", sans-serif;
+    margin: 9rem 0 7rem;
+    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+    position: relative;
 }
 
 nav a, .contact-btn {
@@ -358,7 +359,7 @@ body.menu-open .menu-items li:nth-child(5) { transition-delay: 0.54s; }
 
 .menu-label {
     flex: 1;
-    font-size: clamp(1.8rem, 9vw, 3rem);
+    font-size: clamp(1.2rem, 6vw, 2rem);
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.04em;
@@ -446,16 +447,225 @@ body.menu-open .menu-btn span {
     color: #00000099;
 }
 
-
-/* approach */
-.approach-card {
-    --card-padding: clamp(1.5rem, 4vw, 4rem);
+/* showcase */
+.showcase {
+    margin-top: 7rem;
     font-family: "Poppins", sans-serif;
-    margin: 9rem 0 7rem;
-    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
-    position: relative;
 }
 
+.showcase__header {
+    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+    margin-bottom: 4rem;
+}
+
+.showcase__title {
+    max-width: 16ch;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #2b2b2b;
+}
+
+.showcase__lead {
+    max-width: 44rem;
+    margin-top: 1.5rem;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.8;
+    color: #00000099;
+}
+
+.showcase__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.showcase-card {
+    --card-bg: #1f1f1f;
+    --card-fg: #fff;
+    --card-muted: #ffffffa6;
+    --card-line: #ffffff26;
+    --notch: 1.5rem;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 1.75rem 5rem;
+    border-radius: 1.5rem;
+    background: var(--card-bg);
+    color: var(--card-fg);
+}
+
+.showcase-card[data-theme="light"] {
+    --card-bg: #efefef;
+    --card-fg: #1a1a1a;
+    --card-muted: #00000099;
+    --card-line: #0000001f;
+}
+
+.showcase-card__visual {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 10;
+    margin-bottom: 1.75rem;
+    overflow: hidden;
+    border-radius: 58% 42% 55% 45% / 50% 58% 42% 50%;
+    background: #ffffff1f;
+}
+
+.showcase-card[data-theme="light"] .showcase-card__visual {
+    background: #00000014;
+}
+
+.showcase-card__visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.showcase-card__initial {
+    font-family: "Pixelify Sans", monospace;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    line-height: 1;
+    opacity: 0.85;
+}
+
+.showcase-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--card-muted);
+}
+
+.showcase-card__status::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 0.45rem;
+    border-radius: 50%;
+    background: currentColor;
+    vertical-align: 0.1em;
+}
+
+.showcase-card__status[data-status="progress"]::before {
+    animation: status-pulse 1.6s ease-in-out infinite;
+}
+
+.showcase-card__title {
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.showcase-card__description {
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--card-muted);
+}
+
+.showcase-card__list {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--card-line);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.showcase-card__list li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.showcase-card__list li::before {
+    content: "✓";
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--card-fg);
+    color: var(--card-bg);
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.showcase-card__list .showcase-card__more {
+    color: var(--card-muted);
+    font-size: 0.8rem;
+}
+
+.showcase-card__list .showcase-card__more::before {
+    content: "+";
+    background: transparent;
+    border: 1px solid var(--card-line);
+    color: var(--card-muted);
+}
+
+.showcase-card__action {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0.7rem 0 0 0.7rem;
+    background: #fff;
+    border-top-left-radius: var(--notch);
+}
+
+.showcase-card__action::before,
+.showcase-card__action::after {
+    content: "";
+    position: absolute;
+    width: var(--notch);
+    height: var(--notch);
+    background: radial-gradient(circle at top left, transparent var(--notch), #fff 0);
+}
+
+.showcase-card__action::before {
+    right: 0;
+    top: calc(var(--notch) * -1);
+}
+
+.showcase-card__action::after {
+    left: calc(var(--notch) * -1);
+    bottom: 0;
+}
+
+.showcase-card__action a {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    color: var(--card-fg);
+    font-size: 1.2rem;
+    line-height: 1;
+    box-shadow: inset 0 0 0 1px var(--card-line);
+    transition: transform 0.25s ease;
+}
+
+.showcase-card__action a:hover,
+.showcase-card__action a:focus-visible {
+    transform: rotate(45deg);
+}
+
+/* approach */
 .approach-card__header {
     margin-bottom: 3rem;
 }
@@ -607,6 +817,167 @@ body.menu-open .menu-btn span {
     white-space: nowrap;
 }
 
+/* about */
+.about {
+    margin-top: 7rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.about__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    padding: 0 clamp(1.25rem, 4vw, 3.5rem) 4rem;
+}
+
+.about__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    min-width: 0;
+}
+
+.about__title {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.about__description {
+    max-width: 38rem;
+    font-weight: 300;
+    font-size: clamp(1.1rem, 1.6vw, 1.6rem);
+    line-height: 1.7;
+    color: #00000099;
+    white-space: pre-line; 
+}
+
+.about__image {
+    min-width: 0;
+}
+
+.about__image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+}
+
+.education {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-block: 1px solid #0000001a;
+}
+
+.education__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.education__item + .education__item {
+    border-left: 1px solid #0000001a;
+}
+
+.education__logo {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #0000000f;
+}
+
+.education__logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.education__name {
+    margin-bottom: 0.4rem;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25;
+}
+
+.education__year {
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: #00000099;
+}
+
+/* contact */
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    border-top: 1px solid #0000001c;
+    padding-top: 125px;
+}
+
+.contact__title {
+    max-width: 18ch;
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.contact__subtitle {
+    max-width: 36rem;
+    margin-top: 1.5rem;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.5vw, 1.4rem);
+    line-height: 1.6;
+}
+
+.contact__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: min(100%, 48rem);
+    margin-top: 2.5rem;
+    border: 1px solid #0000001a;
+}
+
+.contact__list li + li {
+    border-left: 1px solid #0000001a;
+}
+
+.contact__link {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    min-height: 70px;
+    padding: 0.25rem;
+
+    color: #000;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.contact__link:hover,
+.contact__link:focus-visible {
+    background: #000;
+    color: #fff;
+}
+
 /* footer */
 footer {
     border-top: 1px solid #0000001a;
@@ -694,6 +1065,25 @@ footer {
         flex-direction: column;
         gap: 1rem;
         padding: 2rem 1.5rem;
+    }
+
+    .about {
+        margin-top: 5rem;
+    }
+
+    .about__body {
+        gap: 2rem;
+    }
+
+    .education__item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .contact {
+        padding-block: 7rem;
     }
 }
 
@@ -860,6 +1250,68 @@ footer {
         margin-top: 2rem;
         font-size: 0.65rem;
     }
+
+    .about {
+        margin-top: 4rem;
+    }
+
+    .about__body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+        padding-bottom: 3rem;
+    }
+
+    .about__image {
+        order: -1;
+    }
+
+    .about__content {
+        gap: 1.25rem;
+    }
+
+    .about__title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    .about__description {
+        max-width: 100%;
+        font-size: 1.1rem;
+        line-height: 1.65;
+    }
+
+    .education {
+        grid-template-columns: 1fr;
+    }
+
+    .education__item {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem 1.25rem;
+    }
+
+    .education__item + .education__item {
+        border-left: none;
+        border-top: 1px solid #0000001a;
+    }
+
+    .contact {
+        padding-block: 5rem;
+    }
+
+    .contact__list {
+        grid-template-columns: 1fr;
+        margin-top: 2.5rem;
+    }
+
+    .contact__list li + li {
+        border-left: none;
+        border-top: 1px solid #0000001a;
+    }
+
+    .contact__link {
+        min-height: 72px;
+    }
 }
 
 /* HP kecil */
@@ -960,6 +1412,47 @@ footer {
 
     .section-label {
         margin-bottom: 2.5rem;
+    }
+
+    .about {
+        margin-top: 3rem;
+    }
+
+    .about__body {
+        padding: 0 1rem 2.5rem;
+    }
+
+    .about__image img {
+        aspect-ratio: 5 / 4;
+    }
+
+    .about__description {
+        font-size: 1rem;
+    }
+
+    .education__item {
+        padding: 1.25rem 1rem;
+    }
+
+    .education__logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .education__name {
+        font-size: 0.95rem;
+    }
+
+    .education__year {
+        font-size: 0.85rem;
+    }
+
+    .contact {
+        padding: 4rem 1rem;
+    }
+
+    .contact__subtitle {
+        margin-top: 1rem;
     }
 }
 

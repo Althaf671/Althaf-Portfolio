@@ -28,5 +28,8 @@ export const CAPABILITY_ICONS = {
 }
 
 export const IMAGE = {
-    MY_PHOTO: "my-photo"
+    MY_PHOTO: "my-photo",
+    SMP_LOGO: "logo-smp",
+    SMA_LOGO: "logo-sma",
+    UNIV_LOGO: "logo-unand"
 }

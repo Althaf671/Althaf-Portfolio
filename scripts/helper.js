@@ -47,6 +47,7 @@ export class Helper {
         const image = document.createElement("img");
         image.src = `./assets/${name}.${type}`;
         image.alt = name;
+        image.loading = "lazy";
         return image;
     }
 
