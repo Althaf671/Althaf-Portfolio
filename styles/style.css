@@ -14,7 +14,7 @@ body {
     min-height: 100vh;
     height: fit-content;
     overflow-x: hidden;
-    background-color: #f6f6f6;
+    background-color: #ffffff;
 }
 
 li {
@@ -68,7 +68,7 @@ header {
     left: 0;
     z-index: 100;
 
-    background-color: #f6f6f6;
+    background-color: rgba(255, 255, 255, 1);
     -webkit-backdrop-filter: blur(0px);
             backdrop-filter: blur(0px);
     border-bottom: 1px solid transparent;
