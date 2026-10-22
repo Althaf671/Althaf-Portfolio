@@ -85,9 +85,9 @@
         {
             "header": {
                 "title": "kode yang bicara bahasa bisnis.",
-                "lead": "Pendekatan saya dalam membangun backend: dimulai dari memahami aturan bisnis, lalu menuangkannya ke model domain yang jelas, bukan dari tabel database."
+                "lead": "Pendekatan aku dalam membangun backend: dimulai dari memahami aturan bisnis, lalu menuangkannya ke model domain yang jelas, bukan dari tabel database."
             },
-            "description": "Menurut saya, perangkat lunak harus mencerminkan bisnis yang dilayaninya. Dengan menerapkan Domain-Driven Design, saya membangun sistem yang berpusat pada aturan bisnis, batasan yang jelas, serta model yang tetap mudah dipelihara seiring dengan meningkatnya kompleksitas.",
+            "description": "Menurut aku, perangkat lunak harus mencerminkan bisnis yang dilayaninya. Dengan menerapkan Domain-Driven Design, aku membangun sistem yang berpusat pada aturan bisnis, batasan yang jelas, serta model yang tetap mudah dipelihara seiring dengan meningkatnya kompleksitas.",
             "highlight": "Domain-Driven Design",
             "details": [
                 "Domain modeling & business invariants",
@@ -104,9 +104,9 @@
         {
             "header": {
                 "title": "aplikasi yang andal.",
-                "lead": "Saya merancang backend dengan mempertimbangkan konsistensi data, penanganan kegagalan, dan pemrosesan operasi yang terkontrol."
+                "lead": "aku merancang backend dengan mempertimbangkan konsistensi data, penanganan kegagalan, dan pemrosesan operasi yang terkontrol."
             },
-            "description": "Keandalan aplikasi tidak cukup hanya dengan memastikan kode berjalan sesuai harapan. Saya menerapkan pola desain Outbox dan Result yang membantu menjaga konsistensi transaksi, memastikan event tercatat bersama perubahan data, serta menangani kegagalan secara eksplisit agar alur operasi lebih terprediksi.",
+            "description": "Keandalan aplikasi tidak cukup hanya dengan memastikan kode berjalan sesuai harapan. aku menerapkan pola desain Outbox dan Result yang membantu menjaga konsistensi transaksi, memastikan event tercatat bersama perubahan data, serta menangani kegagalan secara eksplisit agar alur operasi lebih terprediksi.",
             "highlight": "Outbox dan Result",
             "details": [
                 "Transactional Outbox Pattern",
@@ -122,9 +122,9 @@
         {
             "header": {
                 "title": "dirancang dengan dokumentasi.",
-                "lead": "Saya mendokumentasikan kebutuhan, rancangan, dan keputusan arsitektur, serta menerapkan pola yang mendukung konsistensi data dan penanganan kegagalan."
+                "lead": "aku mendokumentasikan kebutuhan, rancangan, dan keputusan arsitektur, serta menerapkan pola yang mendukung konsistensi data dan penanganan kegagalan."
             },
-            "description": "Pengembangan perangkat lunak yang terstruktur membutuhkan Dokumentasi yang jelas. Saya menggunakan Software Requirements Specification (SRS) untuk mendefinisikan kebutuhan sistem, Software Design Document (SDD) untuk menjelaskan rancangan teknis, dan Architecture Decision Records (ADR) untuk mencatat alasan di balik keputusan arsitektur. ",
+            "description": "Pengembangan perangkat lunak yang terstruktur membutuhkan Dokumentasi yang jelas. aku menggunakan Software Requirements Specification (SRS) untuk mendefinisikan kebutuhan sistem, Software Design Document (SDD) untuk menjelaskan rancangan teknis, dan Architecture Decision Records (ADR) untuk mencatat alasan di balik keputusan arsitektur. ",
             "highlight": "Dokumentasi yang jelas",
             "details": [
                 "SRS · Software Requirements Specification",
