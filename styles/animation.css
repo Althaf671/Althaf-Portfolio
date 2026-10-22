@@ -34,7 +34,3 @@
     background: #222;
     transition: height 0.1s linear;
 }
-
-@keyframes status-pulse {
-    50% { opacity: 0.25; }
-}

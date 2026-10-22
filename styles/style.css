@@ -296,6 +296,7 @@ body.menu-open .menu-btn span:nth-child(2) {
     position: fixed;
     inset: 0;
     z-index: 99;
+    max-width: 100vw;
     padding: calc(var(--header-h) + var(--top-bar)) 1.25rem 2rem;
 
     background: #0d0d0d;
@@ -454,15 +455,14 @@ body.menu-open .menu-btn span {
 }
 
 .showcase__header {
-    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+    padding: 0 clamp(1.25rem, 4vw, 3.5rem) 0 0;
     margin-bottom: 4rem;
 }
 
 .showcase__title {
-    max-width: 16ch;
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
     font-weight: 400;
-    font-size: clamp(2.5rem, 6vw, 5.5rem);
-    line-height: 1.05;
+    line-height: 1;
     letter-spacing: -0.03em;
     color: #2b2b2b;
 }
@@ -479,7 +479,7 @@ body.menu-open .menu-btn span {
 .showcase__grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: 2.5rem;
     padding: 0 clamp(1.25rem, 4vw, 3.5rem);
 }
 
@@ -555,10 +555,6 @@ body.menu-open .menu-btn span {
     border-radius: 50%;
     background: currentColor;
     vertical-align: 0.1em;
-}
-
-.showcase-card__status[data-status="progress"]::before {
-    animation: status-pulse 1.6s ease-in-out infinite;
 }
 
 .showcase-card__title {
@@ -1082,6 +1078,18 @@ footer {
         padding: 2rem 1.5rem;
     }
 
+    .showcase {
+        margin-top: 5rem;
+    }
+
+    .showcase__grid {
+        gap: 1rem;
+    }
+
+    .showcase-card {
+        padding: 1.25rem 1.25rem 4.5rem;
+    }
+
     .contact {
         padding-block: 7rem;
     }
@@ -1295,6 +1303,27 @@ footer {
         border-top: 1px solid #0000001a;
     }
 
+    .showcase {
+        margin-top: 4rem;
+    }
+
+    .showcase__header {
+        margin-bottom: 2.5rem;
+    }
+
+    .showcase__title {
+        max-width: 100%;
+    }
+
+    .showcase__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+    }
+
+    .showcase-card {
+        padding: 1.5rem 1.5rem 5rem;
+    }
+
     .contact {
         padding-block: 5rem;
     }
@@ -1445,6 +1474,56 @@ footer {
 
     .education__year {
         font-size: 0.85rem;
+    }
+
+    .showcase {
+        margin-top: 3rem;
+    }
+
+    .showcase__header,
+    .showcase__grid {
+        padding-inline: 1rem;
+    }
+
+    .showcase__header {
+        margin-bottom: 2rem;
+    }
+
+    .showcase__title {
+        font-size: clamp(2rem, 10vw, 2.75rem);
+    }
+
+    .showcase__lead {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .showcase-card {
+        padding: 1.25rem 1.25rem 4.5rem;
+        border-radius: 1.25rem;
+    }
+
+    .showcase-card__visual {
+        aspect-ratio: 16 / 9;
+        margin-bottom: 1.25rem;
+    }
+
+    .showcase-card__title {
+        font-size: 1.3rem;
+    }
+
+    .showcase-card__description {
+        font-size: 0.9rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .showcase-card__list {
+        font-size: 0.85rem;
+    }
+
+    .showcase-card__action a {
+        width: 44px;
+        height: 44px;
     }
 
     .contact {

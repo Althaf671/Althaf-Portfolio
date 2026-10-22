@@ -384,7 +384,9 @@ helper.loadData("./misc/data.json")
             const visual = document.createElement("div");
             visual.className = "showcase-card__visual";
 
-            const imageName = Array.isArray(project.images) ? project.images[0] : project.images;
+            const imageName = Array.isArray(project.images) 
+                ? project.images[0] 
+                : project.images;
 
             if (imageName) {
                 const img = helper.loadImage(imageName, ASSET_TYPE.PNG);

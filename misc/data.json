@@ -33,11 +33,27 @@
     "techstacks": ["ASP.NET Core", "Entity Framework Core", "PostgreSQL", "Docker", "jQuery", "Bootstrap", "SCSS"],
     "showcase": [
         {
+            "name": "Saranin",
+            "description": "Kotak Saran Digital Anonim untuk Organisasi",
+            "project-url": "https://github.com/Althaf671/Saranin-Showcase",
+            "project-status": "On Progress",
+            "images": "saranin",
+            "type": "SaaS",
+            "techstacks": [
+                {
+                    "name": "",
+                    "description": "",
+                    "icon": ""
+                }
+            ],
+            "architecture-or-pattern-or-principle": ["Domain-Driven Design", "Outbox Pattern", "Modular Monolith", "Result Pattern"]
+        },
+        {
             "name": "Shinee Personal Tools",
             "description": "Kumpulan alat online gratis untuk mengolah gambar, PDF, dan berbagai kebutuhan file langsung dari browser.",
             "project-url": "http://shinee-tools.runasp.net/",
             "project-status": "Completed",
-            "images": "",
+            "images": "shinee-tools",
             "type": "Utility Tools",
             "techstacks": [
                 {
@@ -49,27 +65,11 @@
             "architecture-or-pattern-or-principle": ["MVC"]
         },
         {
-            "name": "Saranin",
-            "description": "Kotak Saran Digital Anonim untuk Organisasi",
-            "project-url": "https://github.com/Althaf671/Saranin-Showcase",
-            "project-status": "On Progress",
-            "images": "",
-            "type": "SaaS",
-            "techstacks": [
-                {
-                    "name": "",
-                    "description": "",
-                    "icon": ""
-                }
-            ],
-            "architecture-or-pattern-or-principle": ["SOLID", "Domain-Driven Design", "Outbox Pattern", "Modular Monolith", "Clean Architecture", "Command-Query Separation", "Railway Oriented Programming", "Result Pattern"]
-        },
-        {
             "name": "Noir Core",
             "description": "",
             "project-url": "https://github.com/Althaf671/Noir-Core",
             "project-status": "Completed",
-            "images": "",
+            "images": "noir",
             "type": "Boilerplate",
             "techstacks": [
                 {
@@ -78,7 +78,7 @@
                     "icon": ""
                 }
             ],
-            "architecture-or-pattern-or-principle": ["SOLID", "Domain-Driven Design", "Modular Monolith", "Clean Architecture", "Result Pattern"]
+            "architecture-or-pattern-or-principle": ["Domain-Driven Design", "Modular Monolith", "Result Pattern", "Command-Query Separation"]
         }
     ],
     "design-approach": [
