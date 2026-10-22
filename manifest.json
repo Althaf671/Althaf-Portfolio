@@ -1,0 +1,22 @@
+{
+  "name": "Althaf Profile",
+  "short_name": "Althaf",
+  "description": "Portfolio of Althaf, a software engineer from Padang, Indonesia.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "categories": ["portfolio", "productivity"],
+  "icons": [
+    {
+      "src": "./assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
