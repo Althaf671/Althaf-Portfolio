@@ -13,7 +13,7 @@
             { "github": "https://github.com/Althaf671" }
         ]
     },
-    "capabilities": [
+    "skills": [
         {
             "name": "Frontend Application",
             "description": "Menggunakan Razor Pages, Bootstrap 5, jQuery, dan SCSS untuk membangun antarmuka web yang responsif, intuitif, dan delightful.",
@@ -79,6 +79,64 @@
                 }
             ],
             "architecture-or-pattern-or-principle": ["SOLID", "Domain-Driven Design", "Modular Monolith", "Clean Architecture", "Result Pattern"]
+        }
+    ],
+    "design-approach": [
+        {
+            "header": {
+                "title": "kode yang bicara bahasa bisnis.",
+                "lead": "Pendekatan saya dalam membangun backend: dimulai dari memahami aturan bisnis, lalu menuangkannya ke model domain yang jelas, bukan dari tabel database."
+            },
+            "description": "Menurut saya, perangkat lunak harus mencerminkan bisnis yang dilayaninya. Dengan menerapkan Domain-Driven Design, saya membangun sistem yang berpusat pada aturan bisnis, batasan yang jelas, serta model yang tetap mudah dipelihara seiring dengan meningkatnya kompleksitas.",
+            "highlight": "Domain-Driven Design",
+            "details": [
+                "Domain modeling & business invariants",
+                "Aggregate roots & transactional consistency",
+                "Domain events & bounded contexts"
+            ],
+            "images": [ 
+                { "name": "ddd", "alt": "Contoh implementasi aggregate dengan Result pattern" },
+                { "name": "ddd-2", "alt": "Contoh implementasi domain" },
+                { "name": "ddd-3", "alt": "Contoh implementasi domain" }
+             ],
+            "footer": { "label": "Domain-Driven Design", "hint": "Klik kode untuk berganti" }
+        },
+        {
+            "header": {
+                "title": "Aplikasi yang andal.",
+                "lead": "Saya merancang backend dengan mempertimbangkan konsistensi data, penanganan kegagalan, dan pemrosesan operasi yang terkontrol."
+            },
+            "description": "Keandalan aplikasi tidak cukup hanya dengan memastikan kode berjalan sesuai harapan. Saya menerapkan pola desain Outbox dan Result yang membantu menjaga konsistensi transaksi, memastikan event tercatat bersama perubahan data, serta menangani kegagalan secara eksplisit agar alur operasi lebih terprediksi.",
+            "highlight": "Outbox dan Result",
+            "details": [
+                "Transactional Outbox Pattern",
+                "Result Pattern",
+                "Retry strategies & idempotent processing"
+            ],
+            "images": [
+                { "name": "outbox", "alt": "outbox example" },
+                { "name": "result", "alt": "result example" }
+            ],
+            "footer": { "label": "Outbox Pattern & Result Pattern", "hint": "Klik kode untuk berganti" }
+        },
+        {
+            "header": {
+                "title": "Dirancang dengan dokumentasi.",
+                "lead": "Saya mendokumentasikan kebutuhan, rancangan, dan keputusan arsitektur, serta menerapkan pola yang mendukung konsistensi data dan penanganan kegagalan."
+            },
+            "description": "Pengembangan perangkat lunak yang terstruktur membutuhkan Dokumentasi yang jelas. Saya menggunakan Software Requirements Specification (SRS) untuk mendefinisikan kebutuhan sistem, Software Design Document (SDD) untuk menjelaskan rancangan teknis, dan Architecture Decision Records (ADR) untuk mencatat alasan di balik keputusan arsitektur. ",
+            "highlight": "Dokumentasi yang jelas",
+            "details": [
+                "SRS · Software Requirements Specification",
+                "SDD · Software Design Document",
+                "ADR · Architecture Decision Records"
+            ],
+            "images": [
+                { "name": "adr", "alt": "adr example" },
+                { "name": "srs", "alt": "srs example" },
+                { "name": "sdd", "alt": "sdd example" }
+            ],
+            "footer": { "label": "SRS · SDD · ADR", "hint": "Klik kode untuk berganti" }
         }
     ]
 }

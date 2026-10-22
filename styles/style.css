@@ -14,6 +14,7 @@ body {
     min-height: 100vh;
     height: fit-content;
     overflow-x: clip;
+    background-color: #ffffff;
 }
 
 body::before {
@@ -84,7 +85,7 @@ nav ul {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin-left: 100px;
+    margin-left: 20px;
 }
 
 .header-actions {
@@ -146,6 +147,32 @@ nav ul {
 
 .play-btn[aria-pressed="true"] .icon-play {
     display: none;
+}
+
+/* section nav */
+.section-label {
+    margin-bottom: 3rem;
+}
+
+.section-label__text {
+    margin: 0;
+    font-size: clamp(0.75rem, 1vw, 1rem);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.section-label__index {
+    color: #8fa88f;
+}
+
+.section-label__line {
+    display: block;
+    width: clamp(8rem, 14vw, 12.5rem);
+    height: 1px;
+    margin-top: 0.25rem;
+    background: #0000003d;
 }
 
 /* hero */
@@ -364,12 +391,12 @@ body.menu-open .menu-btn span {
     background: #fff;
 }
 
-/* capabilities */
-.capabilities {
+/* skills */
+.skills {
     border-block: 1px solid #0000001a;
 }
 
-.capabilities-grid {
+.skills-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -417,6 +444,167 @@ body.menu-open .menu-btn span {
     font-size: 0.95rem;
     line-height: 1.7;
     color: #00000099;
+}
+
+
+/* approach */
+.approach-card {
+    --card-padding: clamp(1.5rem, 4vw, 4rem);
+    font-family: "Poppins", sans-serif;
+    margin: 9rem 0 7rem;
+    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+    position: relative;
+}
+
+.approach-card__header {
+    margin-bottom: 3rem;
+}
+
+.approach-card__title {
+    margin: 0;
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #2b2b2b;
+}
+
+.approach-card__lead {
+    max-width: 44rem;
+    margin: 1.5rem 0 0;
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #00000099;
+    line-height: 1.8;
+}
+
+.approach-card__panel {
+    margin-left: clamp(0rem, 6vw, 6rem);
+    padding: var(--card-padding);
+    background: #fff;
+    border: 1px solid #0000001a;
+    border-radius: 2rem;
+}
+
+.approach-card__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+}
+
+.approach-card__content {
+    min-width: 0;
+}
+
+.approach-card__description {
+    max-width: 38rem;
+    margin: 0;
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #00000099;
+}
+
+.approach-card__description strong {
+    color: #000;
+    font-weight: 600;
+}
+
+.approach-card__details {
+    display: grid;
+    gap: 0.75rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.approach-card__details li {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.approach-stack {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    aspect-ratio: 1 / 1.05;
+    margin-top: calc(var(--card-padding) * -1.6);
+    margin-right: calc(var(--card-padding) * -0.75);
+}
+
+.approach-stack__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 88%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    transform-origin: bottom left;
+    transition:
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.4s ease,
+        filter 0.4s ease;
+}
+
+.approach-stack__item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    filter: drop-shadow(0 18px 30px rgb(0 0 0 / 0.18));
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.approach-stack__item:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 6px;
+    border-radius: 1rem;
+}
+
+.approach-stack__item[data-pos="0"] {
+    z-index: 3;
+    transform: translate(0, 0) rotate(0deg);
+}
+
+.approach-stack__item[data-pos="1"] {
+    z-index: 2;
+    transform: translate(13%, 6%) rotate(2.5deg) scale(0.96);
+    filter: brightness(0.92);
+}
+
+.approach-stack__item[data-pos="2"] {
+    z-index: 1;
+    transform: translate(24%, 12%) rotate(5deg) scale(0.92);
+    filter: brightness(0.85);
+}
+
+.approach-stack:hover .approach-stack__item[data-pos="1"] {
+    transform: translate(16%, 4%) rotate(3.5deg) scale(0.96);
+}
+
+.approach-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e8e8e8;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.approach-card__index {
+    color: #777;
+    white-space: nowrap;
 }
 
 /* footer */
@@ -611,7 +799,7 @@ footer {
         display: none;
     }
 
-    .capabilities-grid {
+    .skills-grid {
         grid-template-columns: 1fr;
     }
 
@@ -627,6 +815,16 @@ footer {
         border-top: 1px solid #0000001a;
     }
 
+    .approach-card__body {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+    }
+
+    .approach-card__visual {
+        margin-top: -15%;
+    }
+
     .footer-copyright {
         padding: 2.25rem 1.25rem;
         font-size: 1rem;
@@ -635,6 +833,32 @@ footer {
     .footer-lower {
         padding: 1.25rem;
         font-size: 0.7rem;
+    }
+
+    .approach-card {
+        margin: 6rem 0 5rem;
+    }
+
+    .approach-card__panel {
+        margin-left: 0;
+        border-radius: 1.5rem;
+    }
+
+    .approach-card__body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+    }
+
+    .approach-stack {
+        order: -1;
+        width: 92%;
+        margin: calc(var(--card-padding) * -1.8) 0 0 auto;
+        margin-bottom: 4rem;
+    }
+
+    .approach-card__footer {
+        margin-top: 2rem;
+        font-size: 0.65rem;
     }
 }
 
@@ -680,6 +904,62 @@ footer {
         display: block;
         font-size: 0.6rem;
         color: #00000066;
+    }
+
+    .approach-card {
+        --card-padding: 1.25rem;
+
+        margin: 3rem 0 5rem;
+        border-radius: 1rem;
+    }
+
+    .approach-card__body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .approach-card__content {
+        padding-top: 0;
+    }
+
+    .approach-card__visual {
+        width: 82%;
+        margin: 0 0 0 auto;
+    }
+
+    .approach-card__visual img {
+        aspect-ratio: 5 / 4;
+        max-height: none;
+    }
+
+    .approach-card__footer {
+        margin-top: 2rem;
+        font-size: 0.65rem;
+    }
+
+    .approach-stack {
+        margin-bottom: 3.5rem;
+    }
+
+    .approach-card__header {
+        gap: 0.75rem;
+    }
+
+    .approach-card__number {
+        padding-top: 0.4rem;
+    }
+
+    .approach-stack__item[data-pos="1"] {
+        transform: translate(9%, 5%) rotate(2deg) scale(0.96);
+    }
+
+    .approach-stack__item[data-pos="2"] {
+        transform: translate(16%, 9%) rotate(4deg) scale(0.92);
+    }
+
+    .section-label {
+        margin-bottom: 2.5rem;
     }
 }
 
@@ -729,5 +1009,9 @@ footer {
 @media (prefers-reduced-motion: reduce) {
     .tech-marquee__track {
         animation: none;
+    }
+
+    .approach-stack__item {
+        transition: none;
     }
 }

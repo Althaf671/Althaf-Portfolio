@@ -135,11 +135,25 @@ playIconContainer.appendChild(stopIcon);
 const audio = document.querySelector("#background-audio");
 const toggle = document.querySelector("#play-bg");
 
+let shouldResumeAudio = false;
+
 toggle.addEventListener("click", () => {
     if (audio.paused) {
         helper.playAudio(audio, toggle);
     } else {
         helper.stopAudio(audio, toggle);
+    }
+});
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        shouldResumeAudio = !audio.paused;
+
+        if (shouldResumeAudio) {
+            helper.stopAudio(audio, toggle);
+        }
+    } else if (shouldResumeAudio) {
+        helper.playAudio(audio, toggle);
     }
 });
 
@@ -233,10 +247,10 @@ helper.loadData("./misc/data.json")
         const linkedInContact = data.about.contact.find((item) => item.linkedIn);
         heroLinkedIn.href = linkedInContact.linkedIn;
 
-        // capabilities
-        const capabilitiesGrid = document.querySelector(".capabilities-grid");
+        // skills
+        const skillsGrid = document.querySelector(".skills-grid");
 
-        data.capabilities.forEach((item) => {
+        data.skills.forEach((item) => {
             const card = document.createElement("div");
             card.className = "capability";
 
@@ -259,7 +273,7 @@ helper.loadData("./misc/data.json")
             body.append(title, description);
 
             card.append(iconBox, body);
-            capabilitiesGrid.appendChild(card);
+            skillsGrid.appendChild(card);
         });
 
         // techstacks
@@ -278,6 +292,73 @@ helper.loadData("./misc/data.json")
 
             marqueeTrack.appendChild(group);
         }
+
+        // design approach
+        const approachTemplate = document.querySelector(".approach-card");
+        const approachBlank = approachTemplate.cloneNode(true);
+        let lastApproachCard = approachTemplate;
+
+        data["design-approach"].forEach((approach, i) => {
+            let card = approachTemplate;
+
+            if (i > 0) {
+                card = approachBlank.cloneNode(true);
+                card.removeAttribute("id");
+                card.removeAttribute("aria-labelledby");
+                card.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+                card.querySelector(".section-label").remove();
+
+                lastApproachCard.after(card);
+                lastApproachCard = card;
+            }
+
+            card.querySelector(".approach-card__title").textContent = approach.header.title;
+            card.querySelector(".approach-card__lead").textContent = approach.header.lead;
+
+            const description = card.querySelector(".approach-card__description");
+            const [textBefore, textAfter] = approach.description.split(approach.highlight);
+            const highlight = document.createElement("strong");
+            highlight.textContent = approach.highlight;
+            description.append(textBefore, highlight, textAfter);
+
+            const details = card.querySelector(".approach-card__details");
+            approach.details.forEach((text) => {
+                const li = document.createElement("li");
+                li.textContent = text;
+                details.appendChild(li);
+            });
+
+            card.querySelector(".approach-card__footer span:first-child").textContent = approach.footer.label;
+            card.querySelector(".approach-card__index").textContent = approach.footer.hint;
+
+            const stack = card.querySelector(".approach-stack");
+
+            approach.images.forEach((item) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "approach-stack__item";
+                button.setAttribute("aria-label", "Tampilkan contoh kode berikutnya");
+
+                const img = helper.loadImage(item.name, ASSET_TYPE.PNG);
+                img.alt = item.alt;
+                img.loading = "lazy";
+
+                button.appendChild(img);
+                stack.appendChild(button);
+            });
+
+            const stackItems = [...stack.children];
+            let active = 0;
+
+            stackItems.forEach((item) => {
+                item.addEventListener("click", () => {
+                    active = (active + 1) % stackItems.length;
+                    helper.updateCodeStack(stackItems, active);
+                });
+            });
+
+            helper.updateCodeStack(stackItems, active);
+        });
 
         // showcase
 

@@ -32,11 +32,10 @@
     <meta name="twitter:image" content="https://althaf-webdev.netlify.app/images/og-image.jpg">
     <meta name="twitter:image:alt" content="Foto Aku">
 
-    <meta name="theme-color" content="#FFFFFF">
-    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="light">
 
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="./misc/manifest.json">
 
@@ -55,7 +54,13 @@
 
     <!-- Navigation bar -->
     <header>
-        <div>Althaf</div>
+        <div>
+            <img 
+                src="./assets/signature.png" 
+                width="135"
+                height="55"
+                alt="tanda tangan gw" />
+        </div>
         <nav>
             <ul id="nav-items"></ul>
         </nav>
@@ -95,7 +100,7 @@
     <main>
 
         <!-- hero -->
-        <article class="hero">
+        <section class="hero">
             <p id="short-description"></p>
 
             <div class="quick-info-container">
@@ -113,25 +118,59 @@
                     </svg>
                 </a>
             </div>
-        </article>
+        </section>
 
-        <!-- capabilities -->
-        <article id="capabilities" class="capabilities">
-            <div class="capabilities-grid"></div>
-        </article>
+        <!-- skills -->
+        <section id="skills" class="skills">
+            <div class="skills-grid"></div>
+        </section>
+
+        <!-- primary approach -->
+        <section id="design-principle" class="approach-card" id="approach" aria-labelledby="approach-title">
+            <div class="section-label">
+                <p class="section-label__text">
+                    <span class="section-label__index">[01]</span> How I Engineer
+                </p>
+                <span class="section-label__line" aria-hidden="true"></span>
+            </div>
+
+            <div class="approach-card__header">
+                <h2 class="approach-card__title" id="approach-title">kode yang bicara bahasa bisnis.</h2>
+                <p class="approach-card__lead">
+                    Pendekatan saya dalam membangun backend: dimulai dari memahami aturan bisnis,
+                    lalu menuangkannya ke model domain yang jelas, bukan dari tabel database.
+                </p>
+            </div>
+
+            <div class="approach-card__panel">
+                <div class="approach-card__body">
+                    <div class="approach-card__content">
+                        <p class="approach-card__description" id="approach-description"></p>
+                        <ul class="approach-card__details" id="approach-details"></ul>
+                    </div>
+
+                    <div class="approach-stack" id="approach-stack"></div>
+                </div>
+
+                <div class="approach-card__footer">
+                    <span id="approach-footer-label"></span>
+                    <span class="approach-card__index" id="approach-footer-hint"></span>
+                </div>
+            </div>
+        </section>
 
         <!-- techstack -->
-        <!-- <article>
+        <section>
             <div class="tech-marquee" aria-hidden="true">
                 <div class="tech-marquee__track" id="tech-marquee-track"></div>
             </div>
-        </article> -->
+        </section>
 
         <!-- showcase -->
-        <article></article>
+        <section></section>
 
         <!-- about me -->
-        <article>
+        <section>
             <div class="content-about">
                 <h3>About Me</h3>
                 <p id="about-description"></p>
@@ -139,10 +178,10 @@
             <div class="image-about">
                 <span id="about-image"></span>
             </div>
-        </article>
+        </section>
 
         <!-- contact -->
-        <article></article>
+        <section></section>
 
     </main>
 

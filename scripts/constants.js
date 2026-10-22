@@ -1,6 +1,6 @@
 export const NAV_ITEMS = [
     { name: "About Me", id: "#about-me" },
-    { name: "Capabilities", id: "#capabilities" },
+    { name: "How I Engineer", id: "#design-principle" },
     { name: "Showcase", id: "#showcase" },
     { name: "Contact", id: "#contact" },
 ]

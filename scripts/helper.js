@@ -79,6 +79,7 @@ export class Helper {
         try {
             await audio.play();
             toggle.setAttribute("aria-pressed", "true");
+            this.fadeAudio(audio, 1);
         } catch {
             toggle.setAttribute("aria-pressed", "false");
         }
@@ -89,7 +90,54 @@ export class Helper {
      * @param {*} audio 
      */
     stopAudio(audio, toggle) {
-        audio.pause();
+        this.fadeAudio(audio, 0, () => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+
         toggle.setAttribute("aria-pressed", "false");
+    }
+
+    fadeAudio(audio, targetVolume, onComplete = null) {
+        const startVolume = audio.volume;
+        const duration = 500;
+        const steps = 30;
+        const interval = duration / steps;
+        let step = 0;
+
+        const timer = setInterval(() => {
+            step++;
+
+            const progress = step / steps;
+            audio.volume = startVolume + (targetVolume - startVolume) * progress;
+
+            if (step >= steps) {
+                clearInterval(timer);
+                audio.volume = targetVolume;
+                onComplete?.();
+            }
+        }, interval);
+    }
+
+    /**
+     * Fungsi mengatur posisi tiap lapisan di tumpukan kode.
+     * 
+     * Cara kerja:
+     * Tiap item dihitung jaraknya dari item aktif, hasilnya jadi
+     * data-pos (0 = paling depan). CSS yang menerjemahkan data-pos
+     * menjadi posisi dan rotasi. Hanya item paling depan yang bisa
+     * difokus dan dibaca screen reader.
+     * 
+     * @param {*} items kumpulan elemen lapisan kode
+     * @param {*} active index lapisan yang ada di depan
+     */
+    updateCodeStack(items, active) {
+        items.forEach((item, i) => {
+            const pos = (i - active + items.length) % items.length;
+
+            item.dataset.pos = pos;
+            item.tabIndex = pos === 0 ? 0 : -1;
+            item.setAttribute("aria-hidden", String(pos !== 0));
+        });
     }
 }
