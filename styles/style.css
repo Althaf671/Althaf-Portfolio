@@ -14,7 +14,7 @@ body {
     min-height: 100vh;
     height: fit-content;
     overflow-x: hidden;
-    background-color: #ffffff;
+    background-color: #f6f6f6;
 }
 
 li {
@@ -27,6 +27,17 @@ a {
 
 .text-muted {
     color: #00000099;
+}
+
+.signature img {
+    display: block;
+    width: 135px;
+    height: 55px;
+    transition: filter 0.35s ease;
+}
+
+body.menu-open .signature {
+    filter: brightness(0) invert(1);
 }
 
 .section-container {
@@ -1187,6 +1198,7 @@ footer {
         bottom: 0.25rem;
         width: 28px;
         height: 28px;
+        margin-left: 90%;
     }
 
     .tech-marquee {
@@ -1378,7 +1390,7 @@ footer {
     }
 
     .hero-linkedin {
-        margin-left: 90%;
+        margin-left: 90% !important;
     }
 
     .role-label {
@@ -1532,6 +1544,11 @@ footer {
 
     .contact__subtitle {
         margin-top: 1rem;
+    }
+
+    .signature img {
+        width: 72px;
+        height: 35px;
     }
 }
 

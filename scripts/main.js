@@ -18,6 +18,8 @@ const worker = new Worker();
 animation.initSmoothScroll();
 worker.register();
 
+console.log("NOW PLAYING POISON DOOR BY SISTER OF MERCY, INSTRUMENTAL version dari https://www.youtube.com/watch?v=nMaEo8HcJfw&list=RDnMaEo8HcJfw&start_radio=1")
+
 // set tahun sekarang
 let currentYear = document.querySelector("#copyright-year");
 currentYear.textContent = helper.getCurrentYear();
