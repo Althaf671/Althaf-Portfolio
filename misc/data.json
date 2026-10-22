@@ -1,0 +1,84 @@
+{
+    "about": {
+        "name": "Althaf Mulya",
+        "role": ["Web Developer"],
+        "short-description": "Membangun sesuatu yang bermanfaat. Bersama .NET apa saja bisa dibuat.",
+        "description": "Saya menggunakan C# serta framework dari ekosistem .NET utamanya ASP.NET Web Api serta ASP.NET Razor Pages untuk pengembangan web application seperti CMS atau aplikasi internal yang memerlukan keamanan dan dukungan yang baik.",
+        "domicile": "Padang, IDN",
+        "yoe": "2 YEARS",
+        "image": "",
+        "contact": [
+            { "email": "althafmain@gmail.com" },
+            { "linkedIn": "https://www.linkedin.com/in/muhammad-althaf-mulya-9a2682319?utm_source=share_via&utm_content=profile&utm_medium=member_android" }, 
+            { "github": "https://github.com/Althaf671" }
+        ]
+    },
+    "capabilities": [
+        {
+            "name": "Frontend Application",
+            "description": "Menggunakan Razor Pages, Bootstrap 5, jQuery, dan SCSS untuk membangun antarmuka web yang responsif, intuitif, dan delightful.",
+            "icon": "frontend"
+        },
+        {
+            "name": "Backend Application",
+            "description": "Menggunakan ASP.NET Core untuk membangun aplikasi server dengan pendekatan desain yaitu Domain-Driven Design (DDD).",
+            "icon": "backend"
+        },
+        {
+            "name": "Database Design",
+            "description": "Menggunakan POCO (Plain Old CLR Object) untuk memodelkan entity dalam domain yang dipetakan oleh ORM menjadi tabel pada database.",
+            "icon": "database"
+        }
+    ],
+    "techstacks": ["ASP.NET Core", "Entity Framework Core", "PostgreSQL", "Docker", "jQuery", "Bootstrap", "SCSS"],
+    "showcase": [
+        {
+            "name": "Saranin",
+            "description": "Kotak Saran Digital Anonim untuk Organisasi",
+            "project-url": "https://github.com/Althaf671/Saranin-Showcase",
+            "project-status": "On Progress",
+            "images": ["", "", ""],
+            "type": "SaaS",
+            "techstacks": [
+                {
+                    "name": "",
+                    "description": "",
+                    "icon": ""
+                }
+            ],
+            "architecture-or-pattern-or-principle": ["SOLID", "Domain-Driven Design", "Outbox Pattern", "Modular Monolith", "Clean Architecture", "Command-Query Separation", "Railway Oriented Programming", "Result Pattern"]
+        },
+        {
+            "name": "Shinee Personal Tools",
+            "description": "Kumpulan alat online gratis untuk mengolah gambar, PDF, dan berbagai kebutuhan file langsung dari browser.",
+            "project-url": "http://shinee-tools.runasp.net/",
+            "project-status": "Completed",
+            "images": ["", "", ""],
+            "type": "Utility Tools",
+            "techstacks": [
+                {
+                    "name": "",
+                    "description": "",
+                    "icon": ""
+                }
+            ],
+            "architecture-or-pattern-or-principle": ["MVC"]
+        },
+        {
+            "name": "Noir Core",
+            "description": "",
+            "project-url": "https://github.com/Althaf671/Noir-Core",
+            "project-status": "Completed",
+            "images": ["", "", ""],
+            "type": "Boilerplate",
+            "techstacks": [
+                {
+                    "name": "",
+                    "description": "",
+                    "icon": ""
+                }
+            ],
+            "architecture-or-pattern-or-principle": ["SOLID", "Domain-Driven Design", "Modular Monolith", "Clean Architecture", "Result Pattern"]
+        }
+    ]
+}
