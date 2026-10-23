@@ -18,17 +18,15 @@ const worker = new Worker();
 animation.initSmoothScroll();
 worker.register();
 
-console.log("NOW PLAYING POISON DOOR BY SISTER OF MERCY, INSTRUMENTAL version dari https://www.youtube.com/watch?v=nMaEo8HcJfw&list=RDnMaEo8HcJfw&start_radio=1")
+console.log("NOW PLAYING MY CASTLE TOWN BY TOBYFOX");
 
 // set tahun sekarang
 let currentYear = document.querySelector("#copyright-year");
 currentYear.textContent = helper.getCurrentYear();
-console.log(currentYear);
 
 // set jam dan kota
 let currentTime = document.querySelector("#current-time");
 currentTime.textContent = helper.getCurrentTime();
-console.log(currentTime);
 
 // glasmo header controller
 const header = document.querySelector('header');
@@ -64,7 +62,6 @@ NAV_ITEMS.forEach((item) => {
     li.appendChild(a);
     navItems.appendChild(li);
 });
-console.log(navItems);
 
 // mobile menu hamburger
 const menuButton = document.querySelector("#menu-btn");
