@@ -13,7 +13,7 @@
   "categories": ["portfolio", "productivity"],
   "icons": [
     {
-      "src": "./assets/favicon.png",
+      "src": "https://res.cloudinary.com/dyxqjq1yp/image/upload/v1792747245/favicon_tgfn6a.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
