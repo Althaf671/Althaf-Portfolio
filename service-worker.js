@@ -1,4 +1,4 @@
-const CACHE_NAME = "althaf-portfolio-v2"; 
+const CACHE_NAME = "althaf-portfolio-v3"; 
 
 const CORE_ASSETS = [
     "./",
