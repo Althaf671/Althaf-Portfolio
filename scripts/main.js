@@ -450,6 +450,37 @@ helper.loadData("./misc/data.json")
             showcaseGrid.appendChild(card);
         });
 
+        const showcasePrev = document.querySelector("#showcase-prev");
+        const showcaseNext = document.querySelector("#showcase-next");
+        const showcaseControls = document.querySelector("#showcase-controls");
+
+        const getShowcaseStep = () => {
+            const card = showcaseGrid.querySelector(".showcase-card");
+            const gap = parseFloat(getComputedStyle(showcaseGrid).columnGap) || 0;
+            return card.getBoundingClientRect().width + gap;
+        };
+
+        const updateShowcaseNav = () => {
+            const max = showcaseGrid.scrollWidth - showcaseGrid.clientWidth;
+
+            showcaseControls.hidden = max <= 2; 
+            showcaseControls.hidden = false;
+            showcasePrev.disabled = showcaseGrid.scrollLeft <= 2;
+            showcaseNext.disabled = showcaseGrid.scrollLeft >= max - 2;
+        };
+
+        showcasePrev.addEventListener("click", () => {
+            showcaseGrid.scrollBy({ left: -getShowcaseStep(), behavior: "smooth" });
+        });
+
+        showcaseNext.addEventListener("click", () => {
+            showcaseGrid.scrollBy({ left: getShowcaseStep(), behavior: "smooth" });
+        });
+
+        showcaseGrid.addEventListener("scroll", updateShowcaseNav, { passive: true });
+        window.addEventListener("resize", updateShowcaseNav);
+        updateShowcaseNav();
+
         // about me
         const aboutDescription = document.querySelector("#about-description");
         const aboutImage = document.querySelector("#about-image");

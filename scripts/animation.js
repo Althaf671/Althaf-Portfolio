@@ -44,6 +44,9 @@ export class Animation {
      * @param {*} event si window wheel
      */
     handleWheel(event) {
+        if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) 
+            return;
+
         event.preventDefault();
 
         if (!this.isRunning) {

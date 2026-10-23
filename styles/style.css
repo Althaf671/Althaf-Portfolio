@@ -461,8 +461,70 @@ body.menu-open .menu-btn span {
 
 /* showcase */
 .showcase {
+    --gap: 2.5rem;
+    --per-view: 3;
+    --inset: clamp(1.25rem, 4vw, 3.5rem);
+
     margin-top: 7rem;
     font-family: "Poppins", sans-serif;
+}
+
+.showcase__grid {
+    display: flex;
+    gap: var(--gap);
+    padding: 0 var(--inset);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--inset);
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+}
+
+.showcase__grid::-webkit-scrollbar {
+    display: none;
+}
+
+.showcase__grid:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: -2px;
+}
+
+.showcase__controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+}
+
+.showcase__controls[hidden] {
+    display: none;
+}
+
+.showcase__nav {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border: 1px solid #00000033;
+    border-radius: 50%;
+    background: transparent;
+    color: #000;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+}
+
+.showcase__nav:hover:not(:disabled),
+.showcase__nav:focus-visible {
+    background: #000;
+    color: #fff;
+}
+
+.showcase__nav:disabled {
+    opacity: 0.25;
+    cursor: default;
 }
 
 .showcase__header {
@@ -487,14 +549,12 @@ body.menu-open .menu-btn span {
     color: #00000099;
 }
 
-.showcase__grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2.5rem;
-    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
-}
-
 .showcase-card {
+    flex: 0 0 calc((100% - var(--gap) * (var(--per-view) - 1)) / var(--per-view));
+    min-width: 0;
+    scroll-snap-align: start;
+    overflow-wrap: anywhere;
+
     --card-bg: #1f1f1f;
     --card-fg: #ffffff;
     --card-muted: #ffffffa6;
@@ -1093,12 +1153,13 @@ footer {
         margin-top: 5rem;
     }
 
-    .showcase__grid {
-        gap: 1rem;
-    }
-
     .showcase-card {
         padding: 1.25rem 1.25rem 4.5rem;
+    }
+
+    .showcase {
+        --gap: 1rem;
+        --per-view: 2;
     }
 
     .contact {
@@ -1317,6 +1378,8 @@ footer {
 
     .showcase {
         margin-top: 4rem;
+        --gap: 1.25rem;
+        --per-view: 1.3;
     }
 
     .showcase__header {
@@ -1327,9 +1390,8 @@ footer {
         max-width: 100%;
     }
 
-    .showcase__grid {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1.25rem;
+    .showcase__controls {
+        margin-top: 2rem;
     }
 
     .showcase-card {
@@ -1489,7 +1551,8 @@ footer {
     }
 
     .showcase {
-        margin-top: 3rem;
+        --inset: 1rem;
+        --per-view: 1.1;
     }
 
     .showcase__header,

@@ -66,7 +66,7 @@
         },
         {
             "name": "Noir Core",
-            "description": "",
+            "description": "Boilerplate aplikasi full-stack yang dirancang dengan Domain-Driven Design, arsitektur modular, dan pola desain perangkat lunak yang dapat digunakan kembali.",
             "project-url": "https://github.com/Althaf671/Noir-Core",
             "project-status": "Completed",
             "images": "noir",
@@ -79,6 +79,22 @@
                 }
             ],
             "architecture-or-pattern-or-principle": ["Domain-Driven Design", "Modular Monolith", "Result Pattern", "Command-Query Separation"]
+        },
+        {
+            "name": "Leyley Handcraft",
+            "description": "Toko online kecil yang menjual kerajinan tangan, menyediakan produk siap kirim dan kreasi yang dibuat sesuai pesanan.",
+            "project-url": "https://illustrious-tartufo-ac8081.netlify.app/",
+            "project-status": "On Progress",
+            "images": "leyley",
+            "type": "",
+            "techstacks": [
+                {
+                    "name": "",
+                    "description": "",
+                    "icon": ""
+                }
+            ],
+            "architecture-or-pattern-or-principle": ["Domain-Driven Design", "Modular Monolith", "Result Pattern", "Outbox Pattern"]
         }
     ],
     "design-approach": [
