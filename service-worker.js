@@ -3,13 +3,17 @@ const CACHE_NAME = "althaf-portfolio";
 const CORE_ASSETS = [
     "./",
     "./index.html",
+    "./contact.html",
+    "./capabilities.html",
     "./styles/style.css",
     "./scripts/main.js",
+    "./scripts/helper.js",
+    "./scripts/constants.js",
+    "./scripts/animation.js",
     "./assets/poison-door-sister-of-mercy.mp3",
     "./assets/favicon.png"
 ];
 
-// Install: cache aset inti
 self.addEventListener("install", event => {
     event.waitUntil(
         (async () => {

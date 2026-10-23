@@ -1,8 +1,8 @@
 export const NAV_ITEMS = [
     { name: "About Me", id: "#about-me" },
     { name: "How I Engineer", id: "#design-principle" },
-    { name: "Showcase", id: "#showcase" },
-    { name: "Contact", id: "#contact" },
+    { name: "Capabilities", id: "./capabilities.html" },
+    { name: "Showcase", id: "#showcase" }
 ]
 
 export const ASSET_TYPE = {

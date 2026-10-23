@@ -41,6 +41,16 @@ const onScroll = () => {
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
+// navigation controller utk multi page
+const isHome = document.body.dataset.page === "home";
+const resolveHref = (id) => {
+    if (id.startsWith("#")) {
+        return isHome ? id : `./index.html${id}`;
+    }
+
+    return id;
+};
+
 // set nav item 
 let navItems = document.querySelector("#nav-items")
 NAV_ITEMS.forEach((item) => {
@@ -48,7 +58,7 @@ NAV_ITEMS.forEach((item) => {
     const a = document.createElement("a");
 
     a.textContent = item.name;
-    a.href = item.id;
+    a.href = resolveHref(item.id); 
     a.className = "text-muted";
 
     li.appendChild(a);
@@ -85,7 +95,7 @@ const createMenuItem = (number, name, href) => {
 };
 
 NAV_ITEMS.forEach((item, i) => {
-    menuItems.appendChild(createMenuItem(i + 1, item.name, item.id));
+    menuItems.appendChild(createMenuItem(i + 1, item.name, resolveHref(item.id)));
 });
 
 const githubMenuItem = createMenuItem(NAV_ITEMS.length + 1, "My Github", "#");
@@ -182,7 +192,7 @@ backToTop.addEventListener("click", () => {
     animation.scrollToPosition(0);
 });
 
-// load image
+// loader image
 const container = document.querySelector("#copyright-icon");
 const image = helper.loadImage(SVG.COPYRIGHT, ASSET_TYPE.SVG);
 container.appendChild(image);
@@ -190,345 +200,17 @@ container.appendChild(image);
 // data loader
 helper.loadData("./misc/data.json")
     .then((data) => {
-        // hero
-        const shortDescription = document.querySelector("#short-description");
-        const roleList = document.querySelector(".list-role-domicile ol");
-        const heroName = document.querySelector("#hero-name");
-        const heroLinkedIn = document.querySelector("#hero-linkedin");
+        const page = document.body.dataset.page;
+        const byId = (id) => document.getElementById(id);
 
-        // short description
-        shortDescription.textContent = data.about["short-description"];
-
-        // role
-        const roleItem = document.createElement("li");
-        const roleLabel = document.createElement("span");
-        roleLabel.className = "role-label";
-        roleLabel.textContent = "Role";
-        const roleValue = document.createElement("span");
-        roleValue.textContent = data.about.role[0];
-        roleItem.append(roleLabel, roleValue);
-        roleList.appendChild(roleItem);
-
-        // experience
-        const experienceItem = document.createElement("li");
-        const experienceLabel = document.createElement("span");
-        experienceLabel.className = "role-label";
-        experienceLabel.textContent = "Experience";
-        const experienceValue = document.createElement("span");
-        experienceValue.textContent = data.about.yoe;
-        experienceItem.append(experienceLabel, experienceValue);
-        roleList.appendChild(experienceItem);
-
-        // domicile
-        const domicileItem = document.createElement("li");
-        const domicileLabel = document.createElement("span");
-        domicileLabel.className = "role-label";
-        domicileLabel.textContent = "Based in";
-        const domicileValue = document.createElement("span");
-        domicileValue.textContent = data.about.domicile;
-        domicileItem.append(domicileLabel, domicileValue);
-        roleList.appendChild(domicileItem);
-
-        const nameParts = data.about.name.split(" ");
-
-        heroName.textContent = "";
-
-        const namePart1 = document.createElement("span");
-        namePart1.textContent = nameParts[0];
-        heroName.appendChild(namePart1);
-
-        const namePart2 = document.createElement("span");
-        namePart2.textContent = nameParts[1];
-        heroName.appendChild(namePart2);
-
-        const namePart3 = document.createElement("span");
-        namePart3.textContent = nameParts[2];
-        heroName.appendChild(namePart3);
-
-        // linkedin
-        const linkedInContact = data.about.contact.find((item) => item.linkedIn);
-        heroLinkedIn.href = linkedInContact.linkedIn;
-
-        // skills
-        const skillsGrid = document.querySelector(".skills-grid");
-
-        data.skills.forEach((item) => {
-            const card = document.createElement("div");
-            card.className = "capability";
-
-            const iconBox = document.createElement("span");
-            iconBox.className = "capability__icon";
-
-            const icon = helper.loadImage(CAPABILITY_ICONS[item.icon], ASSET_TYPE.SVG);
-            icon.alt = "";
-            iconBox.appendChild(icon);
-
-            const body = document.createElement("div");
-            body.className = "capability__body";
-
-            const title = document.createElement("h4");
-            title.textContent = item.name;
-
-            const description = document.createElement("p");
-            description.textContent = item.description;
-
-            body.append(title, description);
-
-            card.append(iconBox, body);
-            skillsGrid.appendChild(card);
-        });
-
-        // techstacks
-        const marqueeTrack = document.querySelector("#tech-marquee-track");
-
-        const createGroup = () => {
-            const group = document.createElement("div");
-            group.className = "tech-marquee__group";
-
-            data.techstacks.forEach((name) => {
-                const item = document.createElement("span");
-                item.className = "tech-marquee__item";
-                item.textContent = name;
-                group.appendChild(item);
-            });
-
-            return group;
+        const el = (tag, className, text, attrs) => {
+            const node = document.createElement(tag);
+            if (className) node.className = className;
+            if (text !== undefined && text !== null) node.textContent = text;
+            if (attrs) Object.entries(attrs).forEach(([k, v]) => node.setAttribute(k, v));
+            return node;
         };
 
-        const firstGroup = createGroup();
-        marqueeTrack.appendChild(firstGroup);
-        const groupWidth = firstGroup.getBoundingClientRect().width;
-
-        const copiesPerHalf = Math.max(1, Math.ceil(window.innerWidth / groupWidth));
-        const totalCopies = copiesPerHalf * 2;
-
-        for (let copy = 1; copy < totalCopies; copy++) {
-            marqueeTrack.appendChild(createGroup());
-        }
-
-        // design approach
-        const approachTemplate = document.querySelector(".approach-card");
-        const approachBlank = approachTemplate.cloneNode(true);
-        let lastApproachCard = approachTemplate;
-
-        data["design-approach"].forEach((approach, i) => {
-            let card = approachTemplate;
-
-            if (i > 0) {
-                card = approachBlank.cloneNode(true);
-                card.removeAttribute("id");
-                card.removeAttribute("aria-labelledby");
-                card.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
-                card.querySelector(".section-label").remove();
-
-                lastApproachCard.after(card);
-                lastApproachCard = card;
-            }
-
-            card.querySelector(".approach-card__title").textContent = approach.header.title;
-            card.querySelector(".approach-card__lead").textContent = approach.header.lead;
-
-            const description = card.querySelector(".approach-card__description");
-            const [textBefore, textAfter] = approach.description.split(approach.highlight);
-            const highlight = document.createElement("strong");
-            highlight.textContent = approach.highlight;
-            description.append(textBefore, highlight, textAfter);
-
-            const details = card.querySelector(".approach-card__details");
-            approach.details.forEach((text) => {
-                const li = document.createElement("li");
-                li.textContent = text;
-                details.appendChild(li);
-            });
-
-            card.querySelector(".approach-card__footer span:first-child").textContent = approach.footer.label;
-            card.querySelector(".approach-card__index").textContent = approach.footer.hint;
-
-            const stack = card.querySelector(".approach-stack");
-
-            approach.images.forEach((item) => {
-                const button = document.createElement("button");
-                button.type = "button";
-                button.className = "approach-stack__item";
-                button.setAttribute("aria-label", "Tampilkan contoh kode berikutnya");
-
-                const img = helper.loadImage(item.name, ASSET_TYPE.PNG);
-                img.alt = item.alt;
-                img.loading = "lazy";
-
-                button.appendChild(img);
-                stack.appendChild(button);
-            });
-
-            const stackItems = [...stack.children];
-            let active = 0;
-
-            stackItems.forEach((item) => {
-                item.addEventListener("click", () => {
-                    active = (active + 1) % stackItems.length;
-                    helper.updateCodeStack(stackItems, active);
-                });
-            });
-
-            helper.updateCodeStack(stackItems, active);
-        });
-
-        // showcase
-        const showcaseGrid = document.querySelector("#showcase-grid");
-        const SHOWCASE_THEMES = ["dark", "light"];
-        const MAX_PATTERNS = 4;
-
-        data.showcase.forEach((project, i) => {
-            const card = document.createElement("article");
-            card.className = "showcase-card";
-            card.dataset.theme = SHOWCASE_THEMES[i % SHOWCASE_THEMES.length];
-
-            const visual = document.createElement("div");
-            visual.className = "showcase-card__visual";
-
-            const imageName = Array.isArray(project.images) 
-                ? project.images[0] 
-                : project.images;
-
-            if (imageName) {
-                const img = helper.loadImage(imageName, ASSET_TYPE.PNG);
-                img.alt = project.name;
-                img.loading = "lazy";
-                visual.appendChild(img);
-            } else {
-                const initial = document.createElement("span");
-                initial.className = "showcase-card__initial";
-                initial.textContent = project.name.charAt(0);
-                initial.setAttribute("aria-hidden", "true");
-                visual.appendChild(initial);
-            }
-
-            const meta = document.createElement("div");
-            meta.className = "showcase-card__meta";
-
-            const type = document.createElement("span");
-            type.textContent = project.type;
-
-            const status = document.createElement("span");
-            status.className = "showcase-card__status";
-            status.dataset.status = project["project-status"] === "Completed" ? "done" : "progress";
-            status.textContent = project["project-status"];
-
-            meta.append(type, status);
-
-            const title = document.createElement("h4");
-            title.className = "showcase-card__title";
-            title.textContent = project.name;
-
-            const description = document.createElement("p");
-            description.className = "showcase-card__description";
-            description.textContent = project.description || "Deskripsi proyek akan segera ditambahkan.";
-
-            const patterns = project["architecture-or-pattern-or-principle"];
-            const list = document.createElement("ul");
-            list.className = "showcase-card__list";
-
-            patterns.slice(0, MAX_PATTERNS).forEach((name) => {
-                const li = document.createElement("li");
-                li.textContent = name;
-                list.appendChild(li);
-            });
-
-            const action = document.createElement("div");
-            action.className = "showcase-card__action";
-
-            const link = document.createElement("a");
-            link.href = project["project-url"];
-            link.target = "_blank";
-            link.rel = "noopener";
-            link.setAttribute("aria-label", `Buka proyek ${project.name}`);
-            link.textContent = "↗";
-
-            action.appendChild(link);
-
-            card.append(visual, meta, title, description, list, action);
-            showcaseGrid.appendChild(card);
-        });
-
-        const showcasePrev = document.querySelector("#showcase-prev");
-        const showcaseNext = document.querySelector("#showcase-next");
-        const showcaseControls = document.querySelector("#showcase-controls");
-
-        const getShowcaseStep = () => {
-            const card = showcaseGrid.querySelector(".showcase-card");
-            const gap = parseFloat(getComputedStyle(showcaseGrid).columnGap) || 0;
-            return card.getBoundingClientRect().width + gap;
-        };
-
-        const updateShowcaseNav = () => {
-            const max = showcaseGrid.scrollWidth - showcaseGrid.clientWidth;
-
-            showcaseControls.hidden = max <= 2; 
-            showcaseControls.hidden = false;
-            showcasePrev.disabled = showcaseGrid.scrollLeft <= 2;
-            showcaseNext.disabled = showcaseGrid.scrollLeft >= max - 2;
-        };
-
-        showcasePrev.addEventListener("click", () => {
-            showcaseGrid.scrollBy({ left: -getShowcaseStep(), behavior: "smooth" });
-        });
-
-        showcaseNext.addEventListener("click", () => {
-            showcaseGrid.scrollBy({ left: getShowcaseStep(), behavior: "smooth" });
-        });
-
-        showcaseGrid.addEventListener("scroll", updateShowcaseNav, { passive: true });
-        window.addEventListener("resize", updateShowcaseNav);
-        updateShowcaseNav();
-
-        // about me
-        const aboutDescription = document.querySelector("#about-description");
-        const aboutImage = document.querySelector("#about-image");
-
-        const setAboutImage = helper.loadImage(IMAGE.MY_PHOTO, ASSET_TYPE.PNG);
-        setAboutImage.alt = data.about.name;
-
-        aboutDescription.textContent = data.about.description;
-        aboutImage.appendChild(setAboutImage);
-
-        const EDUCATION = [
-            { logo: IMAGE.SMP_LOGO,  name: "SMPI Raudhatul Jannah", year: "2019 – 2021" },
-            { logo: IMAGE.SMA_LOGO,  name: "SMA Negeri 2 Harau", year: "2021 – 2024" },
-            { logo: IMAGE.UNIV_LOGO, name: "Universitas Andalas", year: "2025 – 2029" }
-        ];
-
-        const educationList = document.querySelector("#education-list");
-
-        EDUCATION.forEach((item) => {
-            const li = document.createElement("li");
-            li.className = "education__item";
-
-            const logoBox = document.createElement("span");
-            logoBox.className = "education__logo";
-
-            const logo = helper.loadImage(item.logo, ASSET_TYPE.PNG);
-            logo.alt = item.name;
-            logo.loading = "lazy";
-            logoBox.appendChild(logo);
-
-            const body = document.createElement("div");
-
-            const name = document.createElement("h4");
-            name.className = "education__name";
-            name.textContent = item.name;
-
-            const year = document.createElement("p");
-            year.className = "education__year";
-            year.textContent = item.year;
-
-            body.append(name, year);
-            li.append(logoBox, body);
-            educationList.appendChild(li);
-
-            educationList.appendChild(li);
-        });   
-
-        // contact
         const findContact = (key) =>
             data.about.contact.find((item) => item[key])?.[key];
 
@@ -536,31 +218,454 @@ helper.loadData("./misc/data.json")
         const linkedIn = findContact("linkedIn");
         const github = findContact("github");
 
-        const CONTACTS = [
-            { label: "Email", href: `mailto:${email}`, external: false },
-            { label: "LinkedIn", href: linkedIn, external: true },
-            { label: "GitHub", href: github, external: true }
-        ];
-
-        const contactList = document.querySelector("#contact-list");
-
-        CONTACTS.forEach((item) => {
-            const li = document.createElement("li");
-
-            const a = document.createElement("a");
-            a.className = "contact__link";
-            a.href = item.href;
-            a.textContent = item.label;
-
-            if (item.external) {
-                a.target = "_blank";
-                a.rel = "noopener";
-            }
-
-            li.appendChild(a);
-            contactList.appendChild(li);
-        });
-
         githubMenuLink.href = github;
-    });   
+
+        // MAIN script untuk home
+        const renderHero = () => {
+            document.querySelector("#short-description").textContent =
+                data.about["short-description"];
+
+            const roleList = document.querySelector(".list-role-domicile ol");
+            [
+                ["Role", data.about.role[0]],
+                ["Experience", data.about.yoe],
+                ["Based in", data.about.domicile]
+            ].forEach(([label, value]) => {
+                const li = el("li");
+                li.append(el("span", "role-label", label), el("span", "", value));
+                roleList.appendChild(li);
+            });
+
+            const heroName = document.querySelector("#hero-name");
+            heroName.textContent = "";
+            data.about.name
+                .split(" ")
+                .forEach((part) => heroName.appendChild(el("span", "", part)));
+
+            document.querySelector("#hero-linkedin").href = linkedIn;
+        };
+
+        const renderSkills = () => {
+            const grid = document.querySelector(".skills-grid");
+
+            data.skills.forEach((item) => {
+                const icon = helper.loadImage(CAPABILITY_ICONS[item.icon], ASSET_TYPE.SVG);
+                icon.alt = "";
+
+                const iconBox = el("span", "capability__icon");
+                iconBox.appendChild(icon);
+
+                const body = el("div", "capability__body");
+                body.append(el("h4", "", item.name), el("p", "", item.description));
+
+                const card = el("div", "capability");
+                card.append(iconBox, body);
+                grid.appendChild(card);
+            });
+        };
+
+        const renderTechMarquee = () => {
+            const track = document.querySelector("#tech-marquee-track");
+
+            const createGroup = () => {
+                const group = el("div", "tech-marquee__group");
+                data.techstacks.forEach((name) =>
+                    group.appendChild(el("span", "tech-marquee__item", name))
+                );
+                return group;
+            };
+
+            const first = createGroup();
+            track.appendChild(first);
+
+            const groupWidth = first.getBoundingClientRect().width;
+            const perHalf = Math.max(1, Math.ceil(window.innerWidth / groupWidth));
+
+            for (let i = 1; i < perHalf * 2; i++) {
+                track.appendChild(createGroup());
+            }
+        };
+
+        const renderAbout = () => {
+            document.querySelector("#about-description").textContent =
+                data.about.description;
+
+            const photo = helper.loadImage(IMAGE.MY_PHOTO, ASSET_TYPE.PNG);
+            photo.alt = data.about.name;
+            document.querySelector("#about-image").appendChild(photo);
+
+            const EDUCATION = [
+                { logo: IMAGE.SMP_LOGO,  name: "SMPI Raudhatul Jannah", year: "2019 – 2021" },
+                { logo: IMAGE.SMA_LOGO,  name: "SMA Negeri 2 Harau",    year: "2021 – 2024" },
+                { logo: IMAGE.UNIV_LOGO, name: "Universitas Andalas",   year: "2025 – 2029" }
+            ];
+
+            const list = document.querySelector("#education-list");
+
+            EDUCATION.forEach((item) => {
+                const logo = helper.loadImage(item.logo, ASSET_TYPE.PNG);
+                logo.alt = item.name;
+                logo.loading = "lazy";
+
+                const logoBox = el("span", "education__logo");
+                logoBox.appendChild(logo);
+
+                const body = el("div");
+                body.append(
+                    el("h4", "education__name", item.name),
+                    el("p", "education__year", item.year)
+                );
+
+                const li = el("li", "education__item");
+                li.append(logoBox, body);
+                list.appendChild(li);
+            });
+        };
+
+        const renderApproach = () => {
+            const template = document.querySelector(".approach-card");
+            const blank = template.cloneNode(true);
+            let last = template;
+
+            data["design-approach"].forEach((approach, i) => {
+                let card = template;
+
+                if (i > 0) {
+                    card = blank.cloneNode(true);
+                    card.removeAttribute("id");
+                    card.removeAttribute("aria-labelledby");
+                    card.querySelectorAll("[id]").forEach((n) => n.removeAttribute("id"));
+                    card.querySelector(".section-label").remove();
+
+                    last.after(card);
+                    last = card;
+                }
+
+                const q = (selector) => card.querySelector(selector);
+
+                q(".approach-card__title").textContent = approach.header.title;
+                q(".approach-card__lead").textContent = approach.header.lead;
+
+                const [before, after] = approach.description.split(approach.highlight);
+                q(".approach-card__description").append(
+                    before,
+                    el("strong", "", approach.highlight),
+                    after
+                );
+
+                approach.details.forEach((text) =>
+                    q(".approach-card__details").appendChild(el("li", "", text))
+                );
+
+                q(".approach-card__footer span:first-child").textContent = approach.footer.label;
+                q(".approach-card__index").textContent = approach.footer.hint;
+
+                const stack = q(".approach-stack");
+
+                approach.images.forEach((item) => {
+                    const button = el("button", "approach-stack__item", "", {
+                        type: "button",
+                        "aria-label": "Tampilkan contoh kode berikutnya"
+                    });
+
+                    const img = helper.loadImage(item.name, ASSET_TYPE.PNG);
+                    img.alt = item.alt;
+                    img.loading = "lazy";
+
+                    button.appendChild(img);
+                    stack.appendChild(button);
+                });
+
+                const items = [...stack.children];
+                let active = 0;
+
+                items.forEach((item) => {
+                    item.addEventListener("click", () => {
+                        active = (active + 1) % items.length;
+                        helper.updateCodeStack(items, active);
+                    });
+                });
+
+                helper.updateCodeStack(items, active);
+            });
+        };
+
+        const renderShowcase = () => {
+            const grid = byId("showcase-grid");
+            const THEMES = ["dark", "light"];
+            const MAX_PATTERNS = 4;
+
+            data.showcase.forEach((project, i) => {
+                const card = el("article", "showcase-card");
+                card.dataset.theme = THEMES[i % THEMES.length];
+
+                const visual = el("div", "showcase-card__visual");
+                const imageName = Array.isArray(project.images)
+                    ? project.images[0]
+                    : project.images;
+
+                if (imageName) {
+                    const img = helper.loadImage(imageName, ASSET_TYPE.PNG);
+                    img.alt = project.name;
+                    img.loading = "lazy";
+                    visual.appendChild(img);
+                } else {
+                    visual.appendChild(
+                        el("span", "showcase-card__initial", project.name.charAt(0), {
+                            "aria-hidden": "true"
+                        })
+                    );
+                }
+
+                const status = el("span", "showcase-card__status", project["project-status"]);
+                status.dataset.status =
+                    project["project-status"] === "Completed" ? "done" : "progress";
+
+                const meta = el("div", "showcase-card__meta");
+                meta.append(el("span", "", project.type), status);
+
+                const list = el("ul", "showcase-card__list");
+                project["architecture-or-pattern-or-principle"]
+                    .slice(0, MAX_PATTERNS)
+                    .forEach((name) => list.appendChild(el("li", "", name)));
+
+                const link = el("a", "", "↗", {
+                    href: project["project-url"],
+                    target: "_blank",
+                    rel: "noopener",
+                    "aria-label": `Buka proyek ${project.name}`
+                });
+                const action = el("div", "showcase-card__action");
+                action.appendChild(link);
+
+                card.append(
+                    visual,
+                    meta,
+                    el("h4", "showcase-card__title", project.name),
+                    el(
+                        "p",
+                        "showcase-card__description",
+                        project.description || "Deskripsi proyek akan segera ditambahkan."
+                    ),
+                    list,
+                    action
+                );
+                grid.appendChild(card);
+            });
+
+            const prev = byId("showcase-prev");
+            const next = byId("showcase-next");
+
+            const getStep = () => {
+                const card = grid.querySelector(".showcase-card");
+                const gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+                return card.getBoundingClientRect().width + gap;
+            };
+
+            const updateNav = () => {
+                const max = grid.scrollWidth - grid.clientWidth;
+                prev.disabled = grid.scrollLeft <= 2;
+                next.disabled = grid.scrollLeft >= max - 2;
+            };
+
+            prev.addEventListener("click", () =>
+                grid.scrollBy({ left: -getStep(), behavior: "smooth" })
+            );
+            next.addEventListener("click", () =>
+                grid.scrollBy({ left: getStep(), behavior: "smooth" })
+            );
+
+            grid.addEventListener("scroll", updateNav, { passive: true });
+            window.addEventListener("resize", updateNav);
+            updateNav();
+        };
+
+        const renderContactLinks = () => {
+            const list = byId("contact-list");
+
+            [
+                { label: "Email",    href: `mailto:${email}`, external: false },
+                { label: "LinkedIn", href: linkedIn,          external: true },
+                { label: "GitHub",   href: github,            external: true }
+            ].forEach((item) => {
+                const a = el("a", "contact__link", item.label, { href: item.href });
+
+                if (item.external) {
+                    a.target = "_blank";
+                    a.rel = "noopener";
+                }
+
+                const li = el("li");
+                li.appendChild(a);
+                list.appendChild(li);
+            });
+        };
+
+        // CONTACT Scripts
+        const renderContactPage = () => {
+            const c = data["contact-page"];
+            const form = byId("contact-form");
+
+            const [firstWord, accentWord] = c.title;
+            byId("contact-title").append(
+                `${firstWord} `,
+                el("span", "contact-page__accent", accentWord)
+            );
+
+            byId("contact-intro").textContent = c.intro;
+            byId("contact-email-label").textContent = c["email-label"];
+            byId("contact-location-label").textContent = c["location-label"];
+            byId("contact-location").textContent = c.location;
+
+            const emailLink = byId("contact-email");
+            emailLink.textContent = email;
+            emailLink.href = `mailto:${email}`;
+
+            Object.entries(c.fields).forEach(([name, text]) => {
+                byId(`${name}-label`).textContent = text;
+                form.elements[name].placeholder = text;
+            });
+
+            byId("contact-submit").textContent = c.submit;
+
+            const renderOptions = (container, name, options) => {
+                options.forEach((text, i) => {
+                    const input = el("input", "chip__input", "", {
+                        type: "radio",
+                        name,
+                        id: `${name}-${i}`,
+                        value: text
+                    });
+                    const label = el("label", "chip", text, { for: input.id });
+
+                    container.append(input, label);
+                });
+            };
+
+            byId("need-legend").textContent = c.need.legend;
+            byId("budget-legend").textContent = c.budget.legend;
+            renderOptions(byId("need-options"), "need", c.need.options);
+            renderOptions(byId("budget-options"), "budget", c.budget.options);
+
+            form.addEventListener("input", (event) => {
+                const error = form.querySelector(`[data-error-for="${event.target.name}"]`);
+                if (error) error.textContent = "";
+
+                event.target.removeAttribute("aria-invalid");
+                byId("contact-status").textContent = "";
+            });
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                if (!helper.formValidation({ form, errors: c.errors })) return;
+
+                const d = new FormData(form);
+                const subject = `[Portofolio] ${d.get("need")} - ${d.get("name")}`;
+                const body = [
+                    `Nama: ${d.get("name")}`,
+                    `Email: ${d.get("email")}`,
+                    `Kebutuhan: ${d.get("need")}`,
+                    `Anggaran: ${d.get("budget")}`,
+                    "",
+                    d.get("message")
+                ].join("\n");
+
+                window.location.href =
+                    `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                byId("contact-status").textContent = c.success;
+                form.reset();
+            });
+        };
+
+        // Capabilities script
+        const renderCapabilitiesPage = () => {
+            const c = data["capabilities-page"];
+            const COLUMNS = ["type", "stack", "cost", "duration", "deliverable"];
+
+            byId("capabilities-title").textContent = c.title;
+            byId("capabilities-lead").textContent = c.lead;
+            byId("capabilities-note").textContent = c.note;
+            byId("capabilities-caption").textContent = c.caption;
+
+            const headRow = byId("capabilities-head");
+            COLUMNS.forEach((key, i) => {
+                const th = el("th", "", null, { scope: "col" });
+                th.append(
+                    el("span", "cap-table__index", String(i + 1).padStart(2, "0")),
+                    ` · ${c.columns[key]}`
+                );
+                headRow.appendChild(th);
+            });
+
+            const table = byId("capabilities-table");
+
+            c.items.forEach((item) => {
+                const tbody = el("tbody");
+
+                item.options.forEach((option, i) => {
+                    const tr = el("tr");
+
+                    if (i === 0) {
+                        const th = el("th", "cap-table__type", null, {
+                            scope: "rowgroup",
+                            rowspan: String(item.options.length)
+                        });
+                        th.append(
+                            el("span", "cap-type__name", item.type),
+                            el("span", "cap-type__summary", item.summary)
+                        );
+                        tr.appendChild(th);
+                    }
+
+                    const stackCell = el("td", "", null, { "data-label": c.columns.stack });
+                    const stack = el("div", "cap-stack");
+
+                    if (option.label) {
+                        stack.appendChild(el("span", "cap-option-label", option.label));
+                    }
+
+                    const chips = el("ul", "cap-chips");
+                    option.stack.forEach((name) => chips.appendChild(el("li", "cap-chip", name)));
+                    stack.appendChild(chips);
+                    stackCell.appendChild(stack);
+
+                    tr.append(
+                        stackCell,
+                        el("td", "cap-table__cost", option.cost, { "data-label": c.columns.cost }),
+                        el("td", "cap-table__duration", option.duration, { "data-label": c.columns.duration }),
+                        el("td", "cap-table__deliverable", option.deliverable, { "data-label": c.columns.deliverable })
+                    );
+
+                    tbody.appendChild(tr);
+                });
+
+                table.appendChild(tbody);
+            });
+        };
+
+        if (page === "home") {
+            renderHero();
+            renderSkills();
+            renderTechMarquee();
+            renderAbout();
+            renderApproach();
+            renderShowcase();
+            renderContactLinks();
+        }
+
+        if (page === "contact") {
+            renderContactPage();
+        }
+
+if (page === "capabilities") {
+    console.log("Capabilities page detected");
+    console.log("Capabilities data:", data["capabilities-page"]);
+
+    renderCapabilitiesPage();
+
+    console.log("Capabilities rendered");
+}
+    });  
     

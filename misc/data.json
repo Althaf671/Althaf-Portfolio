@@ -86,7 +86,7 @@
             "project-url": "https://illustrious-tartufo-ac8081.netlify.app/",
             "project-status": "On Progress",
             "images": "leyley",
-            "type": "",
+            "type": "E-Commerce",
             "techstacks": [
                 {
                     "name": "",
@@ -154,5 +154,157 @@
             ],
             "footer": { "label": "SRS · SDD · ADR", "hint": "Klik kode untuk berganti" }
         }
-    ]
+    ],
+    "contact-page": {
+        "title": ["Say", "Hi"],
+        "intro": "Ceritakan sedikit tentang apa yang sedang kamu bangun. Aku akan membalas dengan beberapa pertanyaan dan perkiraan kasar biayanya.",
+        "email-label": "Email",
+        "location-label": "Based In",
+        "location": "Padang, Indonesia. Open for remote.",
+        "need": {
+            "legend": "Apa yang kamu butuhkan?",
+            "options": ["CMS", "Landing Page", "SiMS", "HRIS", "Backend API Only", "E-Commerce", "Lainnya"]
+        },
+        "budget": {
+            "legend": "Perkiraan budget",
+            "options": ["Di bawah Rp 2 juta", "Rp 2–5 juta", "Rp 7–15 juta", "Di atas Rp 20 juta", "Belum yakin"]
+        },
+        "fields": {
+            "name": "Nama kamu",
+            "email": "Alamat email",
+            "message": "Apa yang kamu buat?"
+        },
+        "submit": "Kirim Pesan →",
+        "success": "Terima kasih! Aplikasi email kamu akan terbuka untuk mengirim pesan ini.",
+        "errors": {
+            "need": "Pilih salah satu kebutuhan.",
+            "budget": "Pilih perkiraan budget.",
+            "name-required": "Nama wajib diisi.",
+            "name-short": "Nama minimal 2 karakter.",
+            "email-required": "Email wajib diisi.",
+            "email-invalid": "Format email tidak valid, contoh: nama@email.com.",
+            "message-required": "Ceritakan sedikit tentang proyekmu.",
+            "message-short": "Deskripsi minimal 10 karakter."
+        }
+    },
+    "capabilities-page": {
+        "title": "yang bisa kubangun untukmu.",
+        "lead": "Daftar tipe aplikasi yang kukerjakan, pilihan teknologinya, serta perkiraan biaya dan durasinya. Halaman ini hanya berisi informasi.",
+        "caption": "Daftar tipe aplikasi beserta tech stack, estimasi biaya, estimasi durasi, dan hasil yang didapat",
+        "note": "Semua angka adalah perkiraan kasar dan bergantung pada cakupan fitur. Rincian pasti disepakati setelah kebutuhan dibahas.",
+        "columns": {
+            "type": "Tipe Aplikasi",
+            "stack": "Tech Stack",
+            "cost": "Estimasi Biaya",
+            "duration": "Estimasi Durasi",
+            "deliverable": "Yang Kamu Dapat"
+        },
+        "items": [
+            {
+                "type": "Landing Page ",
+                "summary": " Satu atau lebih halaman untuk memperkenalkan produk, jasa, atau acara.",
+                "options": [
+                    {
+                        "label": "Statis murni",
+                        "stack": ["HTML", "CSS", "JavaScript"],
+                        "cost": "Rp 750 rb – 2 juta",
+                        "duration": "3–7 hari",
+                        "deliverable": "Satu halaman responsif, formulir kontak, dan SEO dasar."
+                    },
+                    {
+                        "label": "Astro",
+                        "stack": ["Astro.js", "CSS"],
+                        "cost": "Rp 1,5 – 3 juta",
+                        "duration": "3–7 hari",
+                        "deliverable": "Halaman-halaman dengan komponen yang bisa dipakai ulang, performa tinggi, dan mudah ditambah halaman baru."
+                    }
+                ]
+            },
+            {
+                "type": "CMS",
+                "summary": "Situs dengan konten yang bisa diperbarui sendiri.",
+                "options": [
+                    {
+                        "label": "Dengan panel admin",
+                        "stack": ["ASP.NET Core Razor Pages", "Bootstrap 5", "jQuery", "CSS"],
+                        "cost": "Rp 5 – 8 juta",
+                        "duration": "3-4 minggu",
+                        "deliverable": "Panel admin, manajemen artikel dan halaman, login, serta 4 halaman publik."
+                    },
+                    {
+                        "label": "Konten berbasis file",
+                        "stack": ["Astro.js", "CSS"],
+                        "cost": "Rp 2,5 – 5 juta",
+                        "duration": "2-3 minggu",
+                        "deliverable": "5–8 halaman statis dengan konten yang diperbarui lewat file Markdown."
+                    }
+                ]
+            },
+            {
+                "type": "SiMS",
+                "summary": "Sistem informasi untuk mengelola data dan layanan sekolah.",
+                "options": [
+                    {
+                        "label": "Aplikasi web penuh",
+                        "stack": ["ASP.NET Core Razor Pages", "Entity Framework Core", "PostgreSQL", "Bootstrap 5", "jQuery"],
+                        "cost": "Rp 15 – 30 juta",
+                        "duration": "12-18 minggu",
+                        "deliverable": "Dashboard admin, manajemen pengguna dan peran, modul data inti, laporan dasar, dan dokumen SRS serta SDD."
+                    }
+                ]
+            },
+            {
+                "type": "HRIS",
+                "summary": " Sistem informasi untuk mengelola karyawan dan kehadiran.",
+                "options": [
+                    {
+                        "label": "Aplikasi web penuh",
+                        "stack": ["ASP.NET Core Razor Pages", "Entity Framework Core", "PostgreSQL", "Bootstrap 5", "jQuery"],
+                        "cost": "Rp 15 – 30 juta",
+                        "duration": "12-18 minggu",
+                        "deliverable": "Dashboard admin, data karyawan, absensi dan cuti, laporan, dan hak akses berbasis peran."
+                    }
+                ]
+            },
+            {
+                "type": "Backend API Only",
+                "summary": "Server aplikasi tanpa antarmuka, siap dipakai oleh aplikasi lain.",
+                "options": [
+                    {
+                        "label": "REST API",
+                        "stack": ["ASP.NET Core Web API", "Entity Framework Core", "PostgreSQL", "Docker"],
+                        "cost": "Rp 7,5 – 30 juta",
+                        "duration": "4-18 minggu",
+                        "deliverable": "REST API terdokumentasi, autentikasi, migrasi database, dan Dockerfile siap deploy."
+                    }
+                ]
+            },
+            {
+                "type": "E-Commerce",
+                "summary": "Toko online dengan katalog, keranjang, dan pesanan.",
+                "options": [
+                    {
+                        "label": "Toko kustom",
+                        "stack": ["ASP.NET Core Razor Pages", "Entity Framework Core", "PostgreSQL", "Bootstrap 5", "jQuery"],
+                        "cost": "Rp 10 – 20 juta",
+                        "duration": "4-12 minggu",
+                        "deliverable": "Katalog produk, keranjang dan checkout, panel admin untuk pesanan, serta beberapa halaman statis."
+                    }
+                ]
+            },
+            {
+                "type": "Custom",
+                "summary": "Aku juga tersedia untuk membuat aplikasi lainnya sesuai permintaan mu.",
+                "options": [
+                    {
+                        "label": "Aplikasi kustom",
+                        "stack": ["ASP.NET Core Razor Pages", "Entity Framework Core", "PostgreSQL", "Bootstrap 5", "jQuery"],
+                        "cost": "Rp 5 juta+",
+                        "duration": " 4 minggu+",
+                        "deliverable": "Fitur-fitur yang sesuai dengan kesepakatan."
+                    }
+                ]
+            }
+        ]
+    }
 }

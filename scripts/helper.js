@@ -120,25 +120,81 @@ export class Helper {
         }, interval);
     }
 
-    /**
-     * Fungsi mengatur posisi tiap lapisan di tumpukan kode.
-     * 
-     * Cara kerja:
-     * Tiap item dihitung jaraknya dari item aktif, hasilnya jadi
-     * data-pos (0 = paling depan). CSS yang menerjemahkan data-pos
-     * menjadi posisi dan rotasi. Hanya item paling depan yang bisa
-     * difokus dan dibaca screen reader.
-     * 
-     * @param {*} items kumpulan elemen lapisan kode
-     * @param {*} active index lapisan yang ada di depan
-     */
-    updateCodeStack(items, active) {
-        items.forEach((item, i) => {
-            const pos = (i - active + items.length) % items.length;
+        /**
+         * Fungsi mengatur posisi tiap lapisan di tumpukan kode.
+         * 
+         * Cara kerja:
+         * Each items dihitung jaraknya dari active item, hasilnya akan jadi
+         * data-pos. CSS yang ubah data-pos
+         * menjadi posisi dan dirotasi. Hanya item paling depan yang bisa
+         * difokus dan dibaca oleh scren reader.
+         * 
+         * @param {*} items kumpulan elemen lapisan kode
+         * @param {*} active idx lapisan yang ada di depan
+         */
+        updateCodeStack(items, active) {
+            items.forEach((item, i) => {
+                const pos = (i - active + items.length) % items.length;
 
-            item.dataset.pos = pos;
-            item.tabIndex = pos === 0 ? 0 : -1;
-            item.setAttribute("aria-hidden", String(pos !== 0));
+                item.dataset.pos = pos;
+                item.tabIndex = pos === 0 ? 0 : -1;
+                item.setAttribute("aria-hidden", String(pos !== 0));
+            });
+        }
+
+    /**
+     * Fungsi validasi form kontak di sisi klien.
+     *
+     * Cara kerja:
+     * Tiap isian punya fungsi pengecek yang return error msg
+     * (string kosong kalau valid). Pesan ditulis ke elemen
+     * [data-error-for="nama-field"] di dekat isian bersangkutan, lalu
+     * fokus dipindah ke isian pertama yang bermasalah.
+     *
+     * @param {{ form: HTMLFormElement, errors: Object<string,string> }} params parameter nya ada whole HTML form dan error berupa objek dengan tipe string2
+     * @returns {boolean} true if semua isian valid
+     */
+    formValidation({ form, errors }) {
+        const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        const data = new FormData(form);
+        const value = (name) => (data.get(name) ?? "").toString().trim();
+
+        const checks = {
+            need: () => value("need") ? "" : errors["need"],
+            budget: () => value("budget") ? "" : errors["budget"],
+            name: () => {
+                if (!value("name")) return errors["name-required"];
+                return value("name").length < 2 ? errors["name-short"] : "";
+            },
+            email: () => {
+                if (!value("email")) return errors["email-required"];
+                return EMAIL_REGEX.test(value("email")) ? "" : errors["email-invalid"];
+            },
+            message: () => {
+                if (!value("message")) return errors["message-required"];
+                return value("message").length < 10 ? errors["message-short"] : "";
+            }
+        };
+
+        let firstInvalid = null;
+
+        Object.entries(checks).forEach(([field, check]) => {
+            const message = check();
+            const control = form.elements[field];
+            const isRadio = control instanceof RadioNodeList;
+            const target = isRadio ? control[0] : control;
+
+            form.querySelector(`[data-error-for="${field}"]`).textContent = message;
+
+            if (!isRadio) {
+                target.setAttribute("aria-invalid", String(Boolean(message)));
+            }
+            if (message) {
+                firstInvalid ??= target;
+            }
         });
+
+        firstInvalid?.focus();
+        return firstInvalid === null;
     }
 }

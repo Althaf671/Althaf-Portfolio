@@ -50,7 +50,7 @@
 
     <script type="module" src="./scripts/main.js" defer></script>
 </head>
-<body>
+<body data-page="home">
 
     <!-- Navigation bar -->
     <header>
@@ -66,10 +66,8 @@
             <a 
                 id="contact-btn" 
                 class="contact-btn" 
-                target="_blank" 
-                rel="noopener"
-                href="https://github.com/Althaf671">
-                My Github
+                href="./contact.html">
+                Contact Me
             </a>
             <button
                 id="play-bg"
@@ -210,13 +208,15 @@
             </div>
         </section>
 
-        <!-- contact -->
+        <!-- nav to contact -->
         <section class="contact section-container" id="contact">
             <h3 class="contact__title">Mencari web developer berikutnya?</h3>
             <p class="contact__subtitle">
                 Aku senang mendengar apa yang sedang kamu bangun dan bagaimana aku bisa berkontribusi.
             </p>
-            <ul id="contact-list" class="contact__list"></ul>
+            <a class="contact__cta" href="./contact.html">
+                Let's get in touch <span aria-hidden="true">→</span>
+            </a>
         </section>
 
     </main>
