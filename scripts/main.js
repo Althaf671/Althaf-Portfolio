@@ -642,6 +642,68 @@ helper.loadData("./misc/data.json")
             });
         };
 
+        // FAQ script
+        const setFaqOpen = (item, open) => {
+            item.classList.toggle("is-open", open);
+            item
+                .querySelector(".faq__question")
+                .setAttribute("aria-expanded", String(open));
+        };
+
+        const toggleFaq = (list, item) => {
+            const willOpen = !item.classList.contains("is-open");
+
+            list.querySelectorAll(".faq__item.is-open").forEach((opened) =>
+                setFaqOpen(opened, false)
+            );
+
+            setFaqOpen(item, willOpen);
+        };
+
+        const renderFaq = () => {
+            const f = data["capabilities-page"].faq;
+            const list = byId("faq-list");
+
+            byId("faq-title").textContent = f.title;
+
+            f.items.forEach((entry, i) => {
+                const questionId = `faq-question-${i}`;
+                const answerId = `faq-answer-${i}`;
+
+                const button = el("button", "faq__question", "", {
+                    type: "button",
+                    id: questionId,
+                    "aria-expanded": "false",
+                    "aria-controls": answerId
+                });
+                button.append(
+                    el("span", "faq__text", entry.question),
+                    el("span", "faq__icon", "→", { "aria-hidden": "true" })
+                );
+
+                const inner = el("div", "faq__answer-inner");
+                inner.appendChild(el("p", "", entry.answer));
+
+                const answer = el("div", "faq__answer", "", {
+                    id: answerId,
+                    role: "region",
+                    "aria-labelledby": questionId
+                });
+                answer.appendChild(inner);
+
+                const item = el("li", "faq__item");
+                item.append(button, answer);
+                list.appendChild(item);
+            });
+
+            list.addEventListener("click", (event) => {
+                const button = event.target.closest(".faq__question");
+                if (!button) return;
+
+                toggleFaq(list, button.closest(".faq__item"));
+            });
+        };
+
         if (page === "home") {
             renderHero();
             renderSkills();
@@ -656,13 +718,9 @@ helper.loadData("./misc/data.json")
             renderContactPage();
         }
 
-if (page === "capabilities") {
-    console.log("Capabilities page detected");
-    console.log("Capabilities data:", data["capabilities-page"]);
-
-    renderCapabilitiesPage();
-
-    console.log("Capabilities rendered");
-}
+        if (page === "capabilities") {
+            renderCapabilitiesPage();
+            renderFaq();
+        }
     });  
     

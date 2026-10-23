@@ -287,7 +287,7 @@
                         "label": "Toko kustom",
                         "stack": ["ASP.NET Core Razor Pages", "Entity Framework Core", "PostgreSQL", "Bootstrap 5", "jQuery"],
                         "cost": "Rp 10 – 20 juta",
-                        "duration": "4-12 minggu",
+                        "duration": "8-12 minggu",
                         "deliverable": "Katalog produk, keranjang dan checkout, panel admin untuk pesanan, serta beberapa halaman statis."
                     }
                 ]
@@ -299,12 +299,49 @@
                     {
                         "label": "Aplikasi kustom",
                         "stack": ["ASP.NET Core Razor Pages", "Entity Framework Core", "PostgreSQL", "Bootstrap 5", "jQuery"],
-                        "cost": "Rp 5 juta+",
-                        "duration": " 4 minggu+",
+                        "cost": "Dimulai dari Rp 5 juta",
+                        "duration": "Dimulai dari 4 minggu",
                         "deliverable": "Fitur-fitur yang sesuai dengan kesepakatan."
                     }
                 ]
             }
-        ]
+        ],
+        "faq": {
+            "title": "Jawaban untuk Pertanyaan Populer",
+            "items": [
+                {
+                    "question": "Berapa biaya buat website di Padang?",
+                    "answer": "Tergantung jenis dan cakupan fitur. Landing page mulai sekitar Rp 750 ribu, sedangkan sistem informasi atau HRIS bisa mencapai puluhan juta rupiah. Rinciannya ada di tabel di atas, dan angka pasti disepakati setelah kebutuhanmu dibahas."
+                },
+                {
+                    "question": "Berapa lama pengerjaannya?",
+                    "answer": "Landing page sekitar 3–7 hari, CMS 2–4 minggu, sedangkan sistem informasi dan e-commerce 4–18 minggu. Durasi bisa bergeser sesuai jumlah fitur dan kecepatan umpan balik darimu."
+                },
+                {
+                    "question": "Apakah aku dapat source code dan domain?",
+                    "answer": "Ya. Source code diserahkan setelah pelunasan. Domain dan hosting sebaiknya didaftarkan atas namamu supaya kamu tetap menjadi pemilik penuh. Biayanya dibayar langsung ke penyedia dan tidak termasuk dalam estimasi di tabel."
+                },
+                {
+                    "question": "Bagaimana sistem pembayarannya?",
+                    "answer": "Umumnya dibagi dua atau tiga tahap: DP di awal, lalu pelunasan setelah proyek selesai dan kamu setujui. Skema pastinya disepakati sebelum pengerjaan dimulai."
+                },
+                {
+                    "question": "Apakah ada maintenance setelah selesai?",
+                    "answer": "Ada masa perbaikan bug setelah serah terima, dengan lama yang disepakati di awal. Untuk penambahan fitur atau perawatan rutin, tersedia sebagai layanan terpisah."
+                },
+                {
+                    "question": "Apakah diurus sampai deploy?",
+                    "answer": "Ya. Aku mengurus sampai aplikasimu online: konfigurasi hosting atau server, database, domain, dan HTTPS. Untuk backend, tersedia Dockerfile siap deploy."
+                },
+                {
+                    "question": "Apakah bisa kerja remote?",
+                    "answer": "Bisa. Aku berbasis di Padang dan terbuka untuk kerja remote ke seluruh Indonesia. Komunikasi lewat WhatsApp, email, atau video call."
+                },
+                {
+                    "question": "Bagaimana kalau ada revisi atau fitur tambahan?",
+                    "answer": "Revisi kecil di dalam cakupan yang disepakati sudah termasuk. Fitur di luar kesepakatan dihitung terpisah supaya biaya dan jadwal tetap jelas bagi kedua pihak."
+                }
+            ]
+        }
     }
 }
