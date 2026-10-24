@@ -287,7 +287,7 @@ helper.loadData("./misc/data.json")
             document.querySelector("#about-description").textContent =
                 data.about.description;
 
-            const photo = helper.loadImage(IMAGE.MY_PHOTO, ASSET_TYPE.PNG);
+            const photo = helper.loadImage(IMAGE.MY_PHOTO, ASSET_TYPE.WEBP);
             photo.alt = data.about.name;
             document.querySelector("#about-image").appendChild(photo);
 
@@ -300,7 +300,7 @@ helper.loadData("./misc/data.json")
             const list = document.querySelector("#education-list");
 
             EDUCATION.forEach((item) => {
-                const logo = helper.loadImage(item.logo, ASSET_TYPE.PNG);
+                const logo = helper.loadImage(item.logo, ASSET_TYPE.WEBP);
                 logo.alt = item.name;
                 logo.loading = "lazy";
 
@@ -365,7 +365,7 @@ helper.loadData("./misc/data.json")
                         "aria-label": "Tampilkan contoh kode berikutnya"
                     });
 
-                    const img = helper.loadImage(item.name, ASSET_TYPE.PNG);
+                    const img = helper.loadImage(item.name, ASSET_TYPE.WEBP);
                     img.alt = item.alt;
                     img.loading = "lazy";
 
@@ -402,7 +402,7 @@ helper.loadData("./misc/data.json")
                     : project.images;
 
                 if (imageName) {
-                    const img = helper.loadImage(imageName, ASSET_TYPE.PNG);
+                    const img = helper.loadImage(imageName, ASSET_TYPE.WEBP);
                     img.alt = project.name;
                     img.loading = "lazy";
                     visual.appendChild(img);

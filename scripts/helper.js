@@ -120,27 +120,20 @@ export class Helper {
         }, interval);
     }
 
-        /**
-         * Fungsi mengatur posisi tiap lapisan di tumpukan kode.
-         * 
-         * Cara kerja:
-         * Each items dihitung jaraknya dari active item, hasilnya akan jadi
-         * data-pos. CSS yang ubah data-pos
-         * menjadi posisi dan dirotasi. Hanya item paling depan yang bisa
-         * difokus dan dibaca oleh scren reader.
-         * 
-         * @param {*} items kumpulan elemen lapisan kode
-         * @param {*} active idx lapisan yang ada di depan
-         */
-        updateCodeStack(items, active) {
-            items.forEach((item, i) => {
-                const pos = (i - active + items.length) % items.length;
+    /**
+     * Fung
+     * @param {*} items 
+     * @param {*} active 
+     */
+    updateCodeStack(items, active) {
+        items.forEach((item, i) => {
+            const pos = (i - active + items.length) % items.length;
 
-                item.dataset.pos = pos;
-                item.tabIndex = pos === 0 ? 0 : -1;
-                item.setAttribute("aria-hidden", String(pos !== 0));
-            });
-        }
+            item.dataset.pos = pos;
+            item.tabIndex = pos === 0 ? 0 : -1;
+            item.setAttribute("aria-hidden", String(pos !== 0));
+        });
+    }
 
     /**
      * Fungsi validasi form kontak di sisi klien.

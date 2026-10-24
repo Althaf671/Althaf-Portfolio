@@ -21,7 +21,7 @@
         },
         {
             "name": "Backend Application",
-            "description": "Menggunakan ASP.NET Core untuk membangun aplikasi server dengan pendekatan desain yaitu Domain-Driven Design (DDD).",
+            "description": "Menggunakan ASP.NET Core untuk membangun aplikasi backend dengan pendekatan arsitektur yang disesuaikan dengan kompleksitas dan kebutuhan bisnis.",
             "icon": "backend"
         },
         {
@@ -101,21 +101,24 @@
         {
             "header": {
                 "title": "kode yang bicara bahasa bisnis.",
-                "lead": "Pendekatan ku dalam membangun backend: dimulai dari memahami aturan bisnis, lalu menuangkannya ke model domain yang jelas, bukan dari tabel database."
+                "lead": "Untuk sistem dengan kompleksitas bisnis yang tinggi, aku memulai perancangan dari pemahaman terhadap aturan bisnis, lalu menerjemahkannya ke model domain yang jelas."
             },
-            "description": "Menurut ku, perangkat lunak harus mencerminkan bisnis yang dilayaninya. Dengan menerapkan Domain-Driven Design, aku membangun sistem yang berpusat pada aturan bisnis, batasan yang jelas, serta model yang tetap mudah dipelihara seiring dengan meningkatnya kompleksitas.",
+            "description": "Ketika kompleksitas bisnis menuntutnya, Domain-Driven Design membantuku membangun perangkat lunak yang berpusat pada aturan bisnis, menjaga invariant, dan menetapkan batas tanggung jawab yang jelas. Aku menerapkan pendekatan ini untuk mengelola kompleksitas domain, bukan sekadar menambahkan lapisan arsitektur.",
             "highlight": "Domain-Driven Design",
             "details": [
                 "Domain modeling & business invariants",
                 "Aggregate roots & transactional consistency",
                 "Domain events & bounded contexts"
             ],
-            "images": [ 
+            "images": [
                 { "name": "ddd-2", "alt": "ddd example" },
                 { "name": "ddd", "alt": "ddd example" },
                 { "name": "error-domain", "alt": "ddd example" }
-             ],
-            "footer": { "label": "Domain-Driven Design", "hint": "Klik kode untuk berganti" }
+            ],
+            "footer": {
+                "label": "Domain-Driven Design",
+                "hint": "Klik kode untuk berganti"
+            }
         },
         {
             "header": {
@@ -153,6 +156,27 @@
                 { "name": "sdd", "alt": "sdd example" }
             ],
             "footer": { "label": "SRS · SDD · ADR", "hint": "Klik kode untuk berganti" }
+        },
+        {
+            "header": {
+                "title": "arsitektur sesuai kebutuhan.",
+                "lead": "Tidak semua proyek membutuhkan arsitektur yang kompleks. Aku memilih pendekatan berdasarkan kebutuhan bisnis, menjaga struktur tetap jelas tanpa menambah abstraksi yang belum diperlukan."
+            },
+            "description": "Arsitektur yang baik bukan tentang menerapkan sebanyak mungkin pola desain, melainkan memilih solusi yang sepadan dengan kompleksitas masalah. Untuk aplikasi bisnis yang relatif sederhana, aku mengutamakan struktur aplikasi yang jelas dan sesuai kadar (Pragmatic Architecture) serta Result Pattern untuk menangani keberhasilan dan kegagalan operasi secara eksplisit. Dengan pendekatan pragmatis ini, kode tetap terstruktur, mudah dipahami, dan dapat dikembangkan tanpa beban arsitektur yang berlebihan.",
+            "highlight": "Pragmatic Architecture",
+            "details": [
+                "ASP.NET Core Razor Pages",
+                "Result Pattern & explicit error handling",
+                "Simplicity over unnecessary abstractions"
+            ],
+            "images": [
+                { "name": "page-model", "alt": "model example" },
+                { "name": "page-view", "alt": "view example" }
+            ],
+            "footer": {
+                "label": "Pragmatic Architecture · Result Pattern",
+                "hint": "Klik kode untuk berganti"
+            }
         }
     ],
     "contact-page": {
@@ -209,14 +233,14 @@
                         "stack": ["HTML", "CSS", "JavaScript"],
                         "cost": "Rp 750 rb – 2 juta",
                         "duration": "3–7 hari",
-                        "deliverable": "Satu halaman responsif, formulir kontak, dan SEO dasar."
+                        "deliverable": "Satu atau lebih halaman responsif, formulir kontak, dan SEO dasar."
                     },
                     {
                         "label": "Astro",
                         "stack": ["Astro.js", "CSS"],
                         "cost": "Rp 1,5 – 3 juta",
                         "duration": "3–7 hari",
-                        "deliverable": "Halaman-halaman dengan komponen yang bisa dipakai ulang, performa tinggi, dan mudah ditambah halaman baru."
+                        "deliverable": "Beberapa halaman dengan komponen yang bisa dipakai ulang, performa tinggi, dan mudah ditambah halaman baru."
                     }
                 ]
             },
@@ -236,7 +260,7 @@
                         "stack": ["Astro.js", "CSS"],
                         "cost": "Rp 2,5 – 5 juta",
                         "duration": "2-3 minggu",
-                        "deliverable": "5–8 halaman statis dengan konten yang diperbarui lewat file Markdown."
+                        "deliverable": "Beberapa halaman statis dengan konten yang diperbarui lewat file Markdown."
                     }
                 ]
             },

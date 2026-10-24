@@ -1,4 +1,4 @@
-const CACHE_NAME = "althaf-portfolio-v4"; 
+const CACHE_NAME = "althaf-portfolio-v5"; 
 
 const CORE_ASSETS = [
     "./",
@@ -11,7 +11,7 @@ const CORE_ASSETS = [
     "./scripts/constants.js",
     "./scripts/animation.js",
     "./misc/data.json",
-    "https://res.cloudinary.com/dyxqjq1yp/image/upload/v1792747245/favicon_tgfn6a.png"
+    "./assets/favicon.png"
 ];
 
 const STATIC_EXT = /\.(png|jpe?g|svg|webp|mp3|woff2?)$/i;

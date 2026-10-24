@@ -25,6 +25,12 @@ a {
     text-decoration: none;
 }
 
+#about-me, 
+#design-principle, 
+#showcase {
+    scroll-margin-top: 15vh;
+}
+
 .text-muted {
     color: #00000099;
 }

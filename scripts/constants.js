@@ -9,7 +9,8 @@ export const ASSET_TYPE = {
     PNG: "png",
     SVG: "svg",
     JPG: "jpg",
-    JPEG: "jpeg"
+    JPEG: "jpeg",
+    WEBP: "webp"
 }
 
 export const SVG = {
